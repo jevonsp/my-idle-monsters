@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://bmqrcxop8qu46"]
+
+[ext_resource type="PackedScene" uid="uid://pjbq0neklcw1" path="res://core/inv/inv_slot.tscn" id="1_8e6ll"]
+[ext_resource type="Texture2D" uid="uid://ct6mwssmxjhqs" path="res://assets/Bonus_008.png" id="2_6t1pe"]
+[ext_resource type="Script" uid="uid://b68dccp060bvq" path="res://core/inv/inv_item.gd" id="3_ehxrr"]
+
+[sub_resource type="Resource" id="Resource_6t1pe"]
+script = ExtResource("3_ehxrr")
+name = "Test"
+image = ExtResource("2_6t1pe")
+metadata/_custom_type_script = "uid://b68dccp060bvq"
+
+[node name="Test" type="Control" unique_id=955208958]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer1" type="GridContainer" parent="." unique_id=1265057514]
+layout_mode = 0
+offset_left = 216.0
+offset_top = 133.0
+offset_right = 332.0
+offset_bottom = 189.0
+columns = 2
+
+[node name="InvSlot0" parent="GridContainer1" unique_id=240116701 instance=ExtResource("1_8e6ll")]
+layout_mode = 2
+inv_item = SubResource("Resource_6t1pe")
+
+[node name="InvSlot1" parent="GridContainer1" unique_id=135006009 instance=ExtResource("1_8e6ll")]
+layout_mode = 2
+
+[node name="GridContainer2" type="GridContainer" parent="." unique_id=1869816804]
+layout_mode = 0
+offset_left = 356.0
+offset_top = 133.0
+offset_right = 472.0
+offset_bottom = 189.0
+columns = 2
+
+[node name="InvSlot0" parent="GridContainer2" unique_id=59401916 instance=ExtResource("1_8e6ll")]
+layout_mode = 2
+
+[node name="InvSlot1" parent="GridContainer2" unique_id=1073031849 instance=ExtResource("1_8e6ll")]
+layout_mode = 2

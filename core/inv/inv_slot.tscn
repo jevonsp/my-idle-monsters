@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://pjbq0neklcw1"]
+
+[ext_resource type="Script" uid="uid://6uwjy6q4rrc0" path="res://core/inv/inv_slot.gd" id="1_h76ro"]
+
+[node name="InvSlot" type="MarginContainer" unique_id=59401916]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_h76ro")
+
+[node name="Panel" type="Panel" parent="." unique_id=250058336]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=40863949]
+layout_mode = 2

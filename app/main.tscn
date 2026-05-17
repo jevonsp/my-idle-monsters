@@ -1,8 +1,16 @@
 [gd_scene format=3 uid="uid://6llk1cy8qi4v"]
 
 [ext_resource type="Script" uid="uid://cnss05q1hiseg" path="res://app/main.gd" id="1_yblnd"]
+[ext_resource type="PackedScene" uid="uid://bmqrcxop8qu46" path="res://app/test.tscn" id="2_s58fy"]
 
 [node name="Main" type="Control" unique_id=243576573]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_yblnd")
+
+[node name="Test" parent="." unique_id=955208958 instance=ExtResource("2_s58fy")]
+layout_mode = 1

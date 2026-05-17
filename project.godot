@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="MyIdleMonsters"
+run/main_scene="uid://6llk1cy8qi4v"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 
 [autoload]
