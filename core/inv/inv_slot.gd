@@ -3,6 +3,10 @@ extends MarginContainer
 
 signal inv_item_set(_inv_item: InvItem)
 
+const CLICK_DRAG_THRESHOLD := 10.0
+
+static var _ignore_release_pickup := false
+
 @export var inv_item: InvItem = null
 
 var inv_grid: InvGrid = null
@@ -14,6 +18,8 @@ var tooltip := "":
 		return ""
 	set(val):
 		tooltip = val
+var _press_pos := Vector2.ZERO
+var _pressed_on_this_slot := false
 
 @onready var texture_rect: TextureRect = $TextureRect
 
@@ -23,15 +29,34 @@ func _ready() -> void:
 
 
 func _gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		if event.is_action("secondary_input") and not (event as InputEventMouseButton).pressed:
-			print("right click")
+	if not event is InputEventMouseButton:
+		return
+	var mb := event as InputEventMouseButton
+	if event.is_action("primary_input"):
+		if mb.pressed:
+			_press_pos = mb.position
+			_pressed_on_this_slot = true
+			return
+		if _ignore_release_pickup:
+			_ignore_release_pickup = false
+			_pressed_on_this_slot = false
+			return
+		if _should_click_pickup(mb):
+			var data: Variant = _make_drag_data()
+			if data == null:
+				return
+			force_drag(data, _get_drag_preview())
+			texture_rect.modulate.a = 0.5
+			accept_event()
+		return
+	if event.is_action("secondary_input") and not mb.pressed:
+		_open_contextual_menu()
 
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_DRAG_END:
-		var ok := is_drag_successful()
-		_on_drag_end(ok)
+		_ignore_release_pickup = true
+		_on_drag_end(is_drag_successful())
 
 
 func set_item(_inv_item: InvItem) -> void:
@@ -50,18 +75,37 @@ func display_item() -> void:
 		texture_rect.texture = inv_item.texture
 
 
+func _should_click_pickup(mb: InputEventMouseButton) -> bool:
+	if not _pressed_on_this_slot:
+		return false
+	_pressed_on_this_slot = false
+	if not inv_item:
+		return false
+	if get_viewport().gui_is_dragging():
+		return false
+	if _press_pos.distance_to(mb.position) > CLICK_DRAG_THRESHOLD:
+		return false
+	return true
+
+
 func _on_drag_end(_successful: bool) -> void:
 	display_item()
 
 
-func _get_drag_data(_at_position: Vector2) -> Variant:
+func _make_drag_data() -> Variant:
 	if not inv_item:
 		return
-	var data := {
+	return {
 		"inv_item": inv_item,
 		"from_slot": self,
 		"from_grid": inv_grid,
 	}
+
+
+func _get_drag_data(_at_position: Vector2) -> Variant:
+	var data = _make_drag_data()
+	if not data:
+		return null
 
 	set_drag_preview(_get_drag_preview())
 	texture_rect.modulate.a = 0.5
@@ -84,3 +128,7 @@ func _get_drag_preview() -> TextureRect:
 	rect.z_index = Global.CANVAS_LAYER
 
 	return rect
+
+
+func _open_contextual_menu() -> void:
+	Global.contextual_menu.toggle_visible(true, self)

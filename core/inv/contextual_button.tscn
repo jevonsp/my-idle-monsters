@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b3fkqib2omlii"]
+
+[node name="ContextualButton" type="Button" unique_id=1807724044]
+custom_minimum_size = Vector2(100, 50)
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24

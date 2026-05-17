@@ -41,22 +41,18 @@ func can_accept_drop(data: Variant, to_slot: InvSlot) -> bool:
 	var item: InvItem = data.get("inv_item")
 
 	if item.item_type not in to_slot.accepted_item_types:
-		print("not in accepted item types")
 		return false
 
 	if inv_type == InvType.PLAYER:
 		if from_grid.inv_type == InvType.STORE:
 			if not Global.currency_tracker.can_afford(item.base_price):
-				print("not enough money")
 				return false
 
 		elif from_grid.inv_type == InvType.PLAYER and to_slot.inv_item == null:
-			print("inside own invent and slot is empty")
 			return true
 
 	elif inv_type == InvType.STORE:
 		if from_grid.inv_type == InvType.STORE:
-			print("cant move store items around")
 			return false
 
 	return to_slot.inv_item == null

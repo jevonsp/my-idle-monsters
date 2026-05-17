@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://v2mu0eu3170l"]
+
+[ext_resource type="Script" uid="uid://5qx88w4or45f" path="res://core/inv/contextual_menu.gd" id="1_0lbxb"]
+
+[node name="ContextualMenu" type="VBoxContainer" unique_id=743798992]
+offset_left = -12.0
+offset_top = -21.0
+offset_right = 103.0
+offset_bottom = 21.0
+script = ExtResource("1_0lbxb")
+
+[node name="Sell" type="Button" parent="." unique_id=2001133329]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+text = "Sell"
+
+[connection signal="pressed" from="Sell" to="." method="_on_sell_pressed"]
