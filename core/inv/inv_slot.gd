@@ -35,9 +35,7 @@ func display_item() -> void:
 		texture_rect.texture = inv_item.texture
 
 
-func _on_drag_end(successful: bool) -> void:
-	if successful:
-		return
+func _on_drag_end(_successful: bool) -> void:
 	display_item()
 
 
