@@ -5,6 +5,8 @@ signal inv_item_set(_inv_item: InvItem)
 
 @export var inv_item: InvItem = null
 
+var inv_grid: InvGrid = null
+
 @onready var texture_rect: TextureRect = $TextureRect
 
 
@@ -22,7 +24,6 @@ func set_item(_inv_item: InvItem) -> void:
 	inv_item = _inv_item
 	display_item()
 	inv_item_set.emit(inv_item)
-	print("changed")
 
 
 func display_item() -> void:
@@ -44,8 +45,9 @@ func _get_drag_data(_at_position: Vector2) -> Variant:
 	if not inv_item:
 		return
 	var data := {
-		"item": inv_item,
-		"slot": self,
+		"inv_item": inv_item,
+		"from_slot": self,
+		"from_grid": inv_grid,
 	}
 
 	set_drag_preview(_get_drag_preview())
@@ -54,15 +56,12 @@ func _get_drag_data(_at_position: Vector2) -> Variant:
 	return data
 
 
-func _can_drop_data(_at_position: Vector2, _data: Variant) -> bool:
-	return inv_item == null
+func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
+	return inv_grid.can_accept_drop(data, self)
 
 
 func _drop_data(_at_position: Vector2, data: Variant) -> void:
-	set_item(data.get("item"))
-	var slot: InvSlot = data.get("slot")
-	if slot:
-		slot.set_item(null)
+	inv_grid.handle_drop(data, self)
 
 
 func _get_drag_preview() -> TextureRect:

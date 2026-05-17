@@ -3,3 +3,12 @@ extends Resource
 
 @export var name := ""
 @export var texture: Texture2D
+@export var mantissa := 1.0
+@export var expontent := 1
+
+var base_price:
+	get:
+		var bn := BigNumber.new()
+		bn.mantissa = mantissa
+		bn.exponent = expontent
+		return bn
