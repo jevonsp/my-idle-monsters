@@ -11,5 +11,5 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=40863949]
 layout_mode = 2
-expand_mode = 2
-stretch_mode = 5
+expand_mode = 3
+stretch_mode = 4

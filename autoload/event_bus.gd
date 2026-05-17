@@ -1,6 +1,8 @@
 extends Node
 
 
+@warning_ignore_start("unused_signal")
+@warning_ignore_restore("unused_signal")
 func subscribe(object: Object, event: Signal, callable: Callable, is_oneshot: bool = false):
 	if not object.event.is_connected(callable):
 		if not is_oneshot:

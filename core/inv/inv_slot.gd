@@ -6,12 +6,26 @@ signal inv_item_set(_inv_item: InvItem)
 @export var inv_item: InvItem = null
 
 var inv_grid: InvGrid = null
+var accepted_item_types: Array[InvItem.ItemType]
+var tooltip := "":
+	get:
+		if inv_item and inv_item.name:
+			return inv_item.name
+		return ""
+	set(val):
+		tooltip = val
 
 @onready var texture_rect: TextureRect = $TextureRect
 
 
 func _ready() -> void:
 	display_item()
+
+
+func _gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.is_action("secondary_input") and not (event as InputEventMouseButton).pressed:
+			print("right click")
 
 
 func _notification(what: int) -> void:
@@ -22,6 +36,7 @@ func _notification(what: int) -> void:
 
 func set_item(_inv_item: InvItem) -> void:
 	inv_item = _inv_item
+	tooltip_text = tooltip
 	display_item()
 	inv_item_set.emit(inv_item)
 

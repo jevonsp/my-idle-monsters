@@ -1,10 +1,7 @@
 class_name CurrencyTracker
 extends RefCounted
 
-var money := BigNumber.new():
-	set(val):
-		money = val
-		print(val)
+var money := BigNumber.new()
 
 
 func _init(m: float, e: int) -> void:
