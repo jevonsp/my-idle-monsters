@@ -1,0 +1,14 @@
+extends Node
+
+
+func subscribe(object: Object, event: Signal, callable: Callable, is_oneshot: bool = false):
+	if not object.event.is_connected(callable):
+		if not is_oneshot:
+			object.event.connect(callable)
+			return
+		event.connect(callable, CONNECT_ONE_SHOT)
+
+
+func unsubscribe(object: Object, event: Signal, callable: Callable):
+	if object.event.is_connected(callable):
+		object.event.disconnect(callable)
