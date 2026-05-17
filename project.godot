@@ -21,8 +21,8 @@ Global="*uid://boxh8hcalgw1i"
 
 [display]
 
-window/size/viewport_width=640
-window/size/viewport_height=360
+window/size/viewport_width=1280
+window/size/viewport_height=720
 
 [editor_plugins]
 

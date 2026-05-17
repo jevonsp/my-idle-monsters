@@ -2,4 +2,4 @@ class_name InvItem
 extends Resource
 
 @export var name := ""
-@export var image: Texture2D
+@export var texture: Texture2D

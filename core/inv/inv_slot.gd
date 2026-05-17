@@ -1,6 +1,8 @@
 class_name InvSlot
 extends MarginContainer
 
+signal inv_item_set(_inv_item: InvItem)
+
 @export var inv_item: InvItem = null
 
 @onready var texture_rect: TextureRect = $TextureRect
@@ -18,6 +20,9 @@ func _notification(what: int) -> void:
 
 func set_item(_inv_item: InvItem) -> void:
 	inv_item = _inv_item
+	display_item()
+	inv_item_set.emit(inv_item)
+	print("changed")
 
 
 func display_item() -> void:
@@ -25,8 +30,8 @@ func display_item() -> void:
 	if not inv_item:
 		texture_rect.texture = null
 		return
-	if inv_item and inv_item.image:
-		texture_rect.texture = inv_item.image
+	if inv_item and inv_item.texture:
+		texture_rect.texture = inv_item.texture
 
 
 func _on_drag_end(successful: bool) -> void:
@@ -36,7 +41,6 @@ func _on_drag_end(successful: bool) -> void:
 
 
 func _get_drag_data(_at_position: Vector2) -> Variant:
-	print("_get_drag_data")
 	if not inv_item:
 		return
 	var data := {
@@ -45,30 +49,25 @@ func _get_drag_data(_at_position: Vector2) -> Variant:
 	}
 
 	set_drag_preview(_get_drag_preview())
-	texture_rect.modulate.a = 0.0
+	texture_rect.modulate.a = 0.5
 
 	return data
 
 
 func _can_drop_data(_at_position: Vector2, _data: Variant) -> bool:
-	print("_can_drop_data")
 	return inv_item == null
 
 
 func _drop_data(_at_position: Vector2, data: Variant) -> void:
-	print("_drop_data: ", data)
 	set_item(data.get("item"))
-	display_item()
 	var slot: InvSlot = data.get("slot")
 	if slot:
 		slot.set_item(null)
-		slot.display_item()
 
 
 func _get_drag_preview() -> TextureRect:
 	var rect := TextureRect.new()
-	rect.texture = inv_item.image
-	rect.modulate.a = .5
+	rect.texture = inv_item.texture
 	rect.position += Vector2(5, 5)
 	rect.z_index = Global.CANVAS_LAYER
 
