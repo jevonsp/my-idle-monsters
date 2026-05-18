@@ -31,7 +31,7 @@ func notify_hotbar_changed() -> void:
 func handle_drop(data: Variant, to_slot: InvSlot) -> void:
 	var from_slot: InvSlot = data.get("from_slot")
 	super.handle_drop(data, to_slot)
-	Global.game.on_hotbar_layout_changed(from_slot, to_slot)
+	_on_hotbar_layout_changed(from_slot, to_slot)
 	notify_hotbar_changed()
 
 
@@ -47,3 +47,9 @@ func _notify_card_left_hotbar(slot: InvSlot) -> void:
 	var card := slot.inv_card.card if slot.inv_card else null
 	if card is CardMonster:
 		(card as CardMonster).on_removed_from_hotbar()
+
+
+func _on_hotbar_layout_changed(from_slot: InvSlot, to_slot: InvSlot) -> void:
+	for slot in [from_slot, to_slot]:
+		if slot and slot.inv_card and slot.inv_card.card is CardMonster:
+			(slot.inv_card.card as CardMonster).on_placed_on_hotbar()

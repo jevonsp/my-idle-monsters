@@ -28,7 +28,8 @@ func on_load_game(saved_data_array: Array[SavedData]) -> void:
 	for data in saved_data_array:
 		if data.identifier != IDENTIFIER:
 			continue
-		_currency.money.mantissa = data.payload.get("mantissa", 0.0)
-		_currency.money.exponent = data.payload.get("exponent", 0)
-		EventBus.currency_changed.emit(_currency.money)
+		_currency.load_from_save(
+			data.payload.get("mantissa", 0.0),
+			data.payload.get("exponent", 0),
+		)
 		return

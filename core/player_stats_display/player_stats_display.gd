@@ -20,5 +20,5 @@ func _on_game_loaded() -> void:
 	_on_currency_changed(Global.currency.money)
 
 
-func _on_currency_changed(_money: BigNumber) -> void:
-	currency_label.text = Global.currency.money.to_scientific()
+func _on_currency_changed(money: BigNumber) -> void:
+	currency_label.text = money.to_scientific()
