@@ -10,6 +10,7 @@ static var _ignore_release_pickup := false
 @export var inv_card: InvCard = null
 
 var inv_grid: InvGrid = null
+var inv_slot := 0
 var accepted_card_types: Array[BaseCard.CardType]
 var tooltip := "":
 	get:

@@ -2,32 +2,32 @@
 
 [ext_resource type="PackedScene" uid="uid://bciupdeplw7ta" path="res://core/inv/inv_grid.tscn" id="1_8e6ll"]
 [ext_resource type="Texture2D" uid="uid://ct6mwssmxjhqs" path="res://assets/Bonus_008.png" id="2_6t1pe"]
-[ext_resource type="Script" uid="uid://yavoongj1xsp" path="res://core/card/base_card.gd" id="2_base"]
+[ext_resource type="Script" uid="uid://c111h4hr10qqe" path="res://core/card/card_monster.gd" id="3_7e6lf"]
 [ext_resource type="Script" uid="uid://b68dccp060bvq" path="res://core/inv/inv_card.gd" id="3_ehxrr"]
 [ext_resource type="Texture2D" uid="uid://4vogtlpd6x2a" path="res://assets/Bonus_010.png" id="4_ehxrr"]
 [ext_resource type="Script" uid="uid://j3l40o3hg73" path="res://app/button.gd" id="5_a7qdv"]
+[ext_resource type="Script" uid="uid://dwflin6ikckbd" path="res://core/inv/inv_hotbar.gd" id="5_qxb6r"]
 [ext_resource type="PackedScene" uid="uid://v2mu0eu3170l" path="res://core/inv/contextual_menu.tscn" id="6_ma732"]
+[ext_resource type="PackedScene" uid="uid://d1gpye07u6j6i" path="res://core/main_button/main_button.tscn" id="7_jpcm7"]
 
-[sub_resource type="Resource" id="Resource_6t1pe"]
-script = ExtResource("2_base")
-name = "Test 1"
-texture = ExtResource("2_6t1pe")
-metadata/_custom_type_script = "uid://yavoongj1xsp"
-
-[sub_resource type="Resource" id="Resource_inv_6t1pe"]
-script = ExtResource("3_ehxrr")
-card = SubResource("Resource_6t1pe")
-metadata/_custom_type_script = "uid://b68dccp060bvq"
-
-[sub_resource type="Resource" id="Resource_a7qdv"]
-script = ExtResource("2_base")
-name = "Test 2"
+[sub_resource type="Resource" id="Resource_vlfhc"]
+script = ExtResource("3_7e6lf")
 texture = ExtResource("4_ehxrr")
-metadata/_custom_type_script = "uid://yavoongj1xsp"
+metadata/_custom_type_script = "uid://c111h4hr10qqe"
 
 [sub_resource type="Resource" id="Resource_inv_a7qdv"]
 script = ExtResource("3_ehxrr")
-card = SubResource("Resource_a7qdv")
+card = SubResource("Resource_vlfhc")
+metadata/_custom_type_script = "uid://b68dccp060bvq"
+
+[sub_resource type="Resource" id="Resource_867lq"]
+script = ExtResource("3_7e6lf")
+texture = ExtResource("2_6t1pe")
+metadata/_custom_type_script = "uid://c111h4hr10qqe"
+
+[sub_resource type="Resource" id="Resource_hring"]
+script = ExtResource("3_ehxrr")
+card = SubResource("Resource_867lq")
 metadata/_custom_type_script = "uid://b68dccp060bvq"
 
 [node name="Test" type="Control" unique_id=955208958]
@@ -48,9 +48,6 @@ offset_top = 0.0
 offset_right = 0.0
 offset_bottom = 0.0
 grow_vertical = 1
-inv_list = Dictionary[int, ExtResource("3_ehxrr")]({
-1: SubResource("Resource_inv_6t1pe")
-})
 
 [node name="StoreInv" parent="." unique_id=1435970996 instance=ExtResource("1_8e6ll")]
 visible = false
@@ -74,13 +71,14 @@ offset_top = 0.0
 offset_right = 0.0
 offset_bottom = 0.0
 grow_vertical = 0
+script = ExtResource("5_qxb6r")
 inv_list = Dictionary[int, ExtResource("3_ehxrr")]({
-0: SubResource("Resource_inv_a7qdv")
+0: SubResource("Resource_hring")
 })
 num_slots = 5
 accepted_card_types = Array[int]([0])
 
-[node name="Button" type="Button" parent="." unique_id=627030694 node_paths=PackedStringArray("store")]
+[node name="MockShowStoreButton" type="Button" parent="." unique_id=627030694 node_paths=PackedStringArray("store")]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 1
 anchors_preset = 6
@@ -111,4 +109,10 @@ offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[node name="MainButton" parent="." unique_id=1509033284 instance=ExtResource("7_jpcm7")]
+layout_mode = 1
+offset_top = -50.0
+offset_right = 200.0
+offset_bottom = 50.0
+
+[connection signal="pressed" from="MockShowStoreButton" to="MockShowStoreButton" method="_on_pressed"]

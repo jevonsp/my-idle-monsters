@@ -31,6 +31,10 @@ func _unhandled_input(event: InputEvent) -> void:
 			toggle_visible(false)
 
 
+func connect_signals() -> void:
+	pass
+
+
 ## WARNING NEVER EVER DO OPS HERE. ONLY CHECK VALIDITY!
 func can_accept_drop(data: Variant, to_slot: InvSlot) -> bool:
 	if to_slot.inv_card:
@@ -47,7 +51,7 @@ func can_accept_drop(data: Variant, to_slot: InvSlot) -> bool:
 
 	if inv_type == InvType.PLAYER:
 		if from_grid.inv_type == InvType.STORE:
-			if not Global.currency_tracker.can_afford(item.card.base_price):
+			if not Global.currency.can_afford(item.card.base_price):
 				return false
 
 		elif from_grid.inv_type == InvType.PLAYER and to_slot.inv_card == null:
@@ -85,13 +89,13 @@ func handle_drop(data: Variant, to_slot: InvSlot) -> void:
 		return
 
 	if from_grid.inv_type == InvType.STORE and inv_type == InvType.PLAYER:
-		if not Global.currency_tracker.spend(item.card.base_price):
+		if not Global.currency.spend(item.card.base_price):
 			return
 		to_slot.set_item(item.duplicate(true)) # Doesnt modify store in place
 		return
 
 	if from_grid.inv_type == InvType.PLAYER and inv_type == InvType.STORE:
-		Global.currency_tracker.earn(item.card.base_price)
+		Global.currency.earn(item.card.base_price)
 		from_slot.set_item(null)
 		return
 
