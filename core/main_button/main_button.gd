@@ -2,5 +2,5 @@ class_name MainButton
 extends Button
 
 
-func _ready() -> void:
-	Global.main_button = self
+func _on_pressed() -> void:
+	Global.game.grant_click_reward()

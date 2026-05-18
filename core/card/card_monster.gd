@@ -1,6 +1,8 @@
 class_name CardMonster
 extends BaseCard
 
+signal reward_granted
+
 @export var base_power_mantissa := 1.0
 @export var base_power_exponent := 0
 @export var base_wait_time := 10.0
@@ -12,7 +14,6 @@ var base_power:
 		bn.exponent = base_power_exponent
 		return bn
 var wait_timer := 0.0
-
 var is_ready: bool:
 	get:
 		return wait_timer >= base_wait_time
@@ -32,3 +33,7 @@ func on_removed_from_hotbar() -> void:
 
 func get_idle_reward() -> BigNumber:
 	return base_power
+
+
+func get_idle_cps() -> BigNumber:
+	return get_idle_reward().multiply(1.0 / base_wait_time)

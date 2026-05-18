@@ -5,11 +5,15 @@ extends RefCounted
 static func setup() -> void:
 	if Global.saver.save_game_exists():
 		Global.saver.load_game()
-	Global.game.initialize(Global.currency, Global.unit_manager, Global.player_stats)
+	Global.game.initialize(
+		Global.currency,
+		Global.unit_manager,
+		Global.player_stats,
+		Global.click_tracker,
+	)
 	Global.unit_manager.connect_signals()
-	Global.player_stats.connect_signals()
-	if Global.player_stats_display:
-		Global.player_stats_display.connect_signals()
+	Global.click_tracker.connect_signals()
+	Global.player_stats_display.connect_signals()
 	_refresh_ui_after_load()
 	Global.mark_bootstrapped()
 

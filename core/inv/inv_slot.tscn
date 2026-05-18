@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://pjbq0neklcw1"]
 
 [ext_resource type="Script" uid="uid://6uwjy6q4rrc0" path="res://core/inv/inv_slot.gd" id="1_h76ro"]
+[ext_resource type="Texture2D" uid="uid://ct6mwssmxjhqs" path="res://assets/Bonus_008.png" id="2_h76ro"]
 
 [node name="InvSlot" type="MarginContainer" unique_id=59401916]
 custom_minimum_size = Vector2(60, 60)
@@ -11,5 +12,5 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=40863949]
 layout_mode = 2
+texture = ExtResource("2_h76ro")
 expand_mode = 3
-stretch_mode = 4

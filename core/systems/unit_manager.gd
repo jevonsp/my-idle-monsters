@@ -11,6 +11,16 @@ func connect_signals() -> void:
 		EventBus.time_ticked.connect(_on_time_ticked)
 
 
+func get_monster_cps() -> BigNumber:
+	var ttl := BigNumber.new()
+	ttl.mantissa = 0.0
+
+	for monster: CardMonster in cards.values():
+		ttl.plus_equals(monster.get_idle_cps())
+
+	return ttl
+
+
 func _on_hotbar_changed(list: Dictionary) -> void:
 	cards = list
 

@@ -5,6 +5,7 @@ const AUTOSAVE_INTERVAL := 30.0
 
 var main: Node
 var saver := SaverLoader.new()
+var click_tracker := ClickTracker.new()
 var currency := CurrencyTracker.new(0.0, 0)
 var player_stats := PlayerStatTracker.new(1.0, 0)
 var unit_manager := UnitManager.new()
@@ -14,7 +15,6 @@ var currency_save: CurrencySaveParticipant
 var player_stats_save: PlayerStatsSaveParticipant
 var inventory_save: InventorySaveParticipant
 var player_stats_display: PlayerStatsDisplay = null
-var main_button: MainButton = null
 var hot_bar: InvHotbar = null
 var player_inv: InvGrid = null
 var contextual_menu: ContextualMenu = null

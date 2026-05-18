@@ -7,7 +7,11 @@ const CLICK_DRAG_THRESHOLD := 10.0
 
 static var _ignore_release_pickup := false
 
-@export var inv_card: InvCard = null
+@export var inv_card: InvCard = null:
+	set(val):
+		inv_card = val
+		if inv_card:
+			connect_card()
 
 var inv_grid: InvGrid = null
 var inv_slot := 0
@@ -26,6 +30,7 @@ var _pressed_on_this_slot := false
 
 
 func _ready() -> void:
+	connect_card()
 	display_item()
 
 
@@ -74,6 +79,13 @@ func display_item() -> void:
 		return
 	if inv_card and inv_card.card and inv_card.card.texture:
 		texture_rect.texture = inv_card.card.texture
+
+
+func connect_card() -> void:
+	if inv_card and inv_card.card is CardMonster:
+		var monster: CardMonster = inv_card.card
+		if not monster.reward_granted.is_connected(_on_reward_granted):
+			monster.reward_granted.connect(_on_reward_granted)
 
 
 func _should_click_pickup(mb: InputEventMouseButton) -> bool:
@@ -133,3 +145,7 @@ func _get_drag_preview() -> TextureRect:
 
 func _open_contextual_menu() -> void:
 	Global.contextual_menu.toggle_visible(true, self)
+
+
+func _on_reward_granted() -> void:
+	print("would tween here")
