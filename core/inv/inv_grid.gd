@@ -8,10 +8,10 @@ const INV_SLOT = preload("uid://pjbq0neklcw1")
 @export var inv_type := InvType.PLAYER
 @export var inv_list: Dictionary[int, InvCard] = { }
 @export var num_slots := 15
-@export var accepted_inventory_types: Array[InvCard.ItemType] = [
-	InvCard.ItemType.MONSTER,
-	InvCard.ItemType.ITEM,
-	InvCard.ItemType.GEAR,
+@export var accepted_card_types: Array[BaseCard.CardType] = [
+	BaseCard.CardType.MONSTER,
+	BaseCard.CardType.ITEM,
+	BaseCard.CardType.GEAR,
 ]
 
 var processing := visible
@@ -39,13 +39,15 @@ func can_accept_drop(data: Variant, to_slot: InvSlot) -> bool:
 
 	var from_grid: InvGrid = data.get("from_grid")
 	var item: InvCard = data.get("inv_card")
+	if not item or not item.card:
+		return false
 
-	if item.item_type not in to_slot.accepted_item_types:
+	if item.card.card_type not in to_slot.accepted_card_types:
 		return false
 
 	if inv_type == InvType.PLAYER:
 		if from_grid.inv_type == InvType.STORE:
-			if not Global.currency_tracker.can_afford(item.base_price):
+			if not Global.currency_tracker.can_afford(item.card.base_price):
 				return false
 
 		elif from_grid.inv_type == InvType.PLAYER and to_slot.inv_card == null:
@@ -71,6 +73,8 @@ func handle_drop(data: Variant, to_slot: InvSlot) -> void:
 	var item: InvCard = data.get("inv_card")
 	var from_slot: InvSlot = data.get("from_slot")
 	var from_grid: InvGrid = data.get("from_grid")
+	if not item or not item.card:
+		return
 
 	if from_slot == self:
 		swap_items(data, to_slot)
@@ -81,13 +85,13 @@ func handle_drop(data: Variant, to_slot: InvSlot) -> void:
 		return
 
 	if from_grid.inv_type == InvType.STORE and inv_type == InvType.PLAYER:
-		if not Global.currency_tracker.spend(item.base_price):
+		if not Global.currency_tracker.spend(item.card.base_price):
 			return
-		to_slot.set_item(item.duplicate()) # Doesnt modify store in place
+		to_slot.set_item(item.duplicate(true)) # Doesnt modify store in place
 		return
 
 	if from_grid.inv_type == InvType.PLAYER and inv_type == InvType.STORE:
-		Global.currency_tracker.earn(item.base_price)
+		Global.currency_tracker.earn(item.card.base_price)
 		from_slot.set_item(null)
 		return
 
@@ -115,7 +119,7 @@ func _prepare_slots() -> void:
 		add_child(slot)
 		slot_list.append(slot)
 		slot.inv_grid = self
-		slot.accepted_item_types = accepted_inventory_types.duplicate()
+		slot.accepted_card_types = accepted_card_types.duplicate()
 
 
 func _set_slots() -> void:

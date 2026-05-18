@@ -2,21 +2,32 @@
 
 [ext_resource type="PackedScene" uid="uid://bciupdeplw7ta" path="res://core/inv/inv_grid.tscn" id="1_8e6ll"]
 [ext_resource type="Texture2D" uid="uid://ct6mwssmxjhqs" path="res://assets/Bonus_008.png" id="2_6t1pe"]
+[ext_resource type="Script" uid="uid://yavoongj1xsp" path="res://core/card/base_card.gd" id="2_base"]
 [ext_resource type="Script" uid="uid://b68dccp060bvq" path="res://core/inv/inv_card.gd" id="3_ehxrr"]
 [ext_resource type="Texture2D" uid="uid://4vogtlpd6x2a" path="res://assets/Bonus_010.png" id="4_ehxrr"]
 [ext_resource type="Script" uid="uid://j3l40o3hg73" path="res://app/button.gd" id="5_a7qdv"]
 [ext_resource type="PackedScene" uid="uid://v2mu0eu3170l" path="res://core/inv/contextual_menu.tscn" id="6_ma732"]
 
 [sub_resource type="Resource" id="Resource_6t1pe"]
-script = ExtResource("3_ehxrr")
+script = ExtResource("2_base")
 name = "Test 1"
 texture = ExtResource("2_6t1pe")
+metadata/_custom_type_script = "uid://yavoongj1xsp"
+
+[sub_resource type="Resource" id="Resource_inv_6t1pe"]
+script = ExtResource("3_ehxrr")
+card = SubResource("Resource_6t1pe")
 metadata/_custom_type_script = "uid://b68dccp060bvq"
 
 [sub_resource type="Resource" id="Resource_a7qdv"]
-script = ExtResource("3_ehxrr")
+script = ExtResource("2_base")
 name = "Test 2"
 texture = ExtResource("4_ehxrr")
+metadata/_custom_type_script = "uid://yavoongj1xsp"
+
+[sub_resource type="Resource" id="Resource_inv_a7qdv"]
+script = ExtResource("3_ehxrr")
+card = SubResource("Resource_a7qdv")
 metadata/_custom_type_script = "uid://b68dccp060bvq"
 
 [node name="Test" type="Control" unique_id=955208958]
@@ -38,7 +49,7 @@ offset_right = 0.0
 offset_bottom = 0.0
 grow_vertical = 1
 inv_list = Dictionary[int, ExtResource("3_ehxrr")]({
-1: SubResource("Resource_6t1pe")
+1: SubResource("Resource_inv_6t1pe")
 })
 
 [node name="StoreInv" parent="." unique_id=1435970996 instance=ExtResource("1_8e6ll")]
@@ -50,7 +61,7 @@ offset_right = 0.0
 offset_bottom = 0.0
 inv_type = 1
 inv_list = Dictionary[int, ExtResource("3_ehxrr")]({
-0: SubResource("Resource_a7qdv")
+0: SubResource("Resource_inv_a7qdv")
 })
 
 [node name="PlayerHotBar" parent="." unique_id=96594389 instance=ExtResource("1_8e6ll")]
@@ -64,10 +75,10 @@ offset_right = 0.0
 offset_bottom = 0.0
 grow_vertical = 0
 inv_list = Dictionary[int, ExtResource("3_ehxrr")]({
-0: SubResource("Resource_a7qdv")
+0: SubResource("Resource_inv_a7qdv")
 })
 num_slots = 5
-accepted_inventory_types = Array[int]([0])
+accepted_card_types = Array[int]([0])
 
 [node name="Button" type="Button" parent="." unique_id=627030694 node_paths=PackedStringArray("store")]
 custom_minimum_size = Vector2(200, 100)

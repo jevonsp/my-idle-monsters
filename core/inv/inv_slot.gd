@@ -10,11 +10,11 @@ static var _ignore_release_pickup := false
 @export var inv_card: InvCard = null
 
 var inv_grid: InvGrid = null
-var accepted_item_types: Array[InvCard.ItemType]
+var accepted_card_types: Array[BaseCard.CardType]
 var tooltip := "":
 	get:
-		if inv_card and inv_card.name:
-			return inv_card.name
+		if inv_card and inv_card.card and inv_card.card.name:
+			return inv_card.card.name
 		return ""
 	set(val):
 		tooltip = val
@@ -68,18 +68,18 @@ func set_item(_inv_card: InvCard) -> void:
 
 func display_item() -> void:
 	texture_rect.modulate.a = 1.0
-	if not inv_card:
+	if not inv_card or not inv_card.card:
 		texture_rect.texture = null
 		return
-	if inv_card and inv_card.texture:
-		texture_rect.texture = inv_card.texture
+	if inv_card and inv_card.card and inv_card.card.texture:
+		texture_rect.texture = inv_card.card.texture
 
 
 func _should_click_pickup(mb: InputEventMouseButton) -> bool:
 	if not _pressed_on_this_slot:
 		return false
 	_pressed_on_this_slot = false
-	if not inv_card:
+	if not inv_card or not inv_card.card:
 		return false
 	if get_viewport().gui_is_dragging():
 		return false
@@ -93,7 +93,7 @@ func _on_drag_end(_successful: bool) -> void:
 
 
 func _make_drag_data() -> Variant:
-	if not inv_card:
+	if not inv_card or not inv_card.card:
 		return
 	return {
 		"inv_card": inv_card,
@@ -123,7 +123,7 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 
 func _get_drag_preview() -> TextureRect:
 	var rect := TextureRect.new()
-	rect.texture = inv_card.texture
+	rect.texture = inv_card.card.texture
 	rect.position += Vector2(5, 5)
 	rect.z_index = Global.CANVAS_LAYER
 

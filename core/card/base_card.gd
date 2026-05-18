@@ -1,6 +1,9 @@
 class_name BaseCard
 extends Resource
 
+enum CardType { MONSTER, ITEM, GEAR }
+
+@export var card_type := CardType.MONSTER
 @export var name := ""
 @export var texture: Texture2D
 @export var base_price_mantissa := 1.0
