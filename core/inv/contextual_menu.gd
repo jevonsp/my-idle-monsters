@@ -36,6 +36,6 @@ func toggle_visible(val: bool, _inv_slot: InvSlot = null, _data: Dictionary = { 
 
 
 func _on_sell_pressed() -> void:
-	if inv_slot and inv_slot.inv_item and Global.active_store:
-		Global.currency_tracker.earn(inv_slot.inv_item.base_price)
+	if inv_slot and inv_slot.inv_card and Global.active_store:
+		Global.currency_tracker.earn(inv_slot.inv_card.base_price)
 		inv_slot.set_item(null)

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bciupdeplw7ta" path="res://core/inv/inv_grid.tscn" id="1_8e6ll"]
 [ext_resource type="Texture2D" uid="uid://ct6mwssmxjhqs" path="res://assets/Bonus_008.png" id="2_6t1pe"]
-[ext_resource type="Script" uid="uid://b68dccp060bvq" path="res://core/inv/inv_item.gd" id="3_ehxrr"]
+[ext_resource type="Script" uid="uid://b68dccp060bvq" path="res://core/inv/inv_card.gd" id="3_ehxrr"]
 [ext_resource type="Texture2D" uid="uid://4vogtlpd6x2a" path="res://assets/Bonus_010.png" id="4_ehxrr"]
 [ext_resource type="Script" uid="uid://j3l40o3hg73" path="res://app/button.gd" id="5_a7qdv"]
 [ext_resource type="PackedScene" uid="uid://v2mu0eu3170l" path="res://core/inv/contextual_menu.tscn" id="6_ma732"]

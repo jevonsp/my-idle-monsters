@@ -1,4 +1,4 @@
-class_name InvItem
+class_name InvCard
 extends Resource
 
 enum ItemType { MONSTER, ITEM, GEAR }

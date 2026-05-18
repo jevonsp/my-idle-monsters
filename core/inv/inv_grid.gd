@@ -6,12 +6,12 @@ enum InvType { PLAYER, STORE }
 const INV_SLOT = preload("uid://pjbq0neklcw1")
 
 @export var inv_type := InvType.PLAYER
-@export var inv_list: Dictionary[int, InvItem] = { }
+@export var inv_list: Dictionary[int, InvCard] = { }
 @export var num_slots := 15
-@export var accepted_inventory_types: Array[InvItem.ItemType] = [
-	InvItem.ItemType.MONSTER,
-	InvItem.ItemType.ITEM,
-	InvItem.ItemType.GEAR,
+@export var accepted_inventory_types: Array[InvCard.ItemType] = [
+	InvCard.ItemType.MONSTER,
+	InvCard.ItemType.ITEM,
+	InvCard.ItemType.GEAR,
 ]
 
 var processing := visible
@@ -33,12 +33,12 @@ func _unhandled_input(event: InputEvent) -> void:
 
 ## WARNING NEVER EVER DO OPS HERE. ONLY CHECK VALIDITY!
 func can_accept_drop(data: Variant, to_slot: InvSlot) -> bool:
-	if to_slot.inv_item:
+	if to_slot.inv_card:
 		if can_swap_items(data, to_slot):
 			return true
 
 	var from_grid: InvGrid = data.get("from_grid")
-	var item: InvItem = data.get("inv_item")
+	var item: InvCard = data.get("inv_card")
 
 	if item.item_type not in to_slot.accepted_item_types:
 		return false
@@ -48,19 +48,19 @@ func can_accept_drop(data: Variant, to_slot: InvSlot) -> bool:
 			if not Global.currency_tracker.can_afford(item.base_price):
 				return false
 
-		elif from_grid.inv_type == InvType.PLAYER and to_slot.inv_item == null:
+		elif from_grid.inv_type == InvType.PLAYER and to_slot.inv_card == null:
 			return true
 
 	elif inv_type == InvType.STORE:
 		if from_grid.inv_type == InvType.STORE:
 			return false
 
-	return to_slot.inv_item == null
+	return to_slot.inv_card == null
 
 
 func can_swap_items(data: Variant, _to_slot: InvSlot) -> bool:
 	var _from_grid: InvGrid = data.get("from_grid")
-	var _item: InvItem = data.get("inv_item")
+	var _item: InvCard = data.get("inv_card")
 	if inv_type == InvType.STORE:
 		return false
 	return true
@@ -68,7 +68,7 @@ func can_swap_items(data: Variant, _to_slot: InvSlot) -> bool:
 
 ## DO OPERATIONS HERE!! NOT IN can_accept_drop() !!
 func handle_drop(data: Variant, to_slot: InvSlot) -> void:
-	var item: InvItem = data.get("inv_item")
+	var item: InvCard = data.get("inv_card")
 	var from_slot: InvSlot = data.get("from_slot")
 	var from_grid: InvGrid = data.get("from_grid")
 
@@ -94,8 +94,8 @@ func handle_drop(data: Variant, to_slot: InvSlot) -> void:
 
 func swap_items(data: Variant, to_slot: InvSlot) -> void:
 	var from_slot: InvSlot = data.get("from_slot")
-	var from_item: InvItem = data.get("inv_item")
-	var to_item: InvItem = to_slot.inv_item
+	var from_item: InvCard = data.get("inv_card")
+	var to_item: InvCard = to_slot.inv_card
 	from_slot.set_item(to_item)
 	to_slot.set_item(from_item)
 

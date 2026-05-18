@@ -1,20 +1,20 @@
 class_name InvSlot
 extends MarginContainer
 
-signal inv_item_set(_inv_item: InvItem)
+signal inv_card_set(_inv_card: InvCard)
 
 const CLICK_DRAG_THRESHOLD := 10.0
 
 static var _ignore_release_pickup := false
 
-@export var inv_item: InvItem = null
+@export var inv_card: InvCard = null
 
 var inv_grid: InvGrid = null
-var accepted_item_types: Array[InvItem.ItemType]
+var accepted_item_types: Array[InvCard.ItemType]
 var tooltip := "":
 	get:
-		if inv_item and inv_item.name:
-			return inv_item.name
+		if inv_card and inv_card.name:
+			return inv_card.name
 		return ""
 	set(val):
 		tooltip = val
@@ -59,27 +59,27 @@ func _notification(what: int) -> void:
 		_on_drag_end(is_drag_successful())
 
 
-func set_item(_inv_item: InvItem) -> void:
-	inv_item = _inv_item
+func set_item(_inv_card: InvCard) -> void:
+	inv_card = _inv_card
 	tooltip_text = tooltip
 	display_item()
-	inv_item_set.emit(inv_item)
+	inv_card_set.emit(inv_card)
 
 
 func display_item() -> void:
 	texture_rect.modulate.a = 1.0
-	if not inv_item:
+	if not inv_card:
 		texture_rect.texture = null
 		return
-	if inv_item and inv_item.texture:
-		texture_rect.texture = inv_item.texture
+	if inv_card and inv_card.texture:
+		texture_rect.texture = inv_card.texture
 
 
 func _should_click_pickup(mb: InputEventMouseButton) -> bool:
 	if not _pressed_on_this_slot:
 		return false
 	_pressed_on_this_slot = false
-	if not inv_item:
+	if not inv_card:
 		return false
 	if get_viewport().gui_is_dragging():
 		return false
@@ -93,10 +93,10 @@ func _on_drag_end(_successful: bool) -> void:
 
 
 func _make_drag_data() -> Variant:
-	if not inv_item:
+	if not inv_card:
 		return
 	return {
-		"inv_item": inv_item,
+		"inv_card": inv_card,
 		"from_slot": self,
 		"from_grid": inv_grid,
 	}
@@ -123,7 +123,7 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 
 func _get_drag_preview() -> TextureRect:
 	var rect := TextureRect.new()
-	rect.texture = inv_item.texture
+	rect.texture = inv_card.texture
 	rect.position += Vector2(5, 5)
 	rect.z_index = Global.CANVAS_LAYER
 
