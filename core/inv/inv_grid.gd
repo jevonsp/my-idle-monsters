@@ -21,6 +21,8 @@ var slot_list: Array[InvSlot] = []
 func _ready() -> void:
 	_prepare_slots()
 	_set_slots()
+	if inv_type == InvType.PLAYER and not self is InvHotbar:
+		Global.player_inv = self
 	if visible:
 		_register_store()
 
@@ -143,3 +145,8 @@ func _register_store() -> bool:
 
 func _deregister_store() -> void:
 	Global.active_store = null
+
+
+func reload_from_slots() -> void:
+	for slot in slot_list:
+		slot.display_item()

@@ -18,6 +18,11 @@ func get_monster_list() -> Dictionary[int, CardMonster]:
 	return fmt
 
 
+func reload_from_slots() -> void:
+	super.reload_from_slots()
+	notify_hotbar_changed()
+
+
 func notify_hotbar_changed() -> void:
 	EventBus.hotbar_changed.emit(get_monster_list())
 

@@ -4,6 +4,8 @@ extends Node
 signal time_ticked(delta: float)
 signal currency_changed(money: BigNumber)
 signal hotbar_changed(cards: Dictionary)
+signal game_loaded
+signal save_completed(error: Error)
 @warning_ignore_restore("unused_signal")
 
 
