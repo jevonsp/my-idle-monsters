@@ -1,7 +1,10 @@
 class_name CurrencyTracker
 extends RefCounted
 
-var money := BigNumber.new()
+var money := BigNumber.new():
+	set(val):
+		money = val
+		EventBus.currency_changed.emit(money)
 
 
 func _init(m: float, e: int) -> void:

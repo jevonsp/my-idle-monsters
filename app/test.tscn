@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://dwflin6ikckbd" path="res://core/inv/inv_hotbar.gd" id="5_qxb6r"]
 [ext_resource type="PackedScene" uid="uid://v2mu0eu3170l" path="res://core/inv/contextual_menu.tscn" id="6_ma732"]
 [ext_resource type="PackedScene" uid="uid://d1gpye07u6j6i" path="res://core/main_button/main_button.tscn" id="7_jpcm7"]
+[ext_resource type="PackedScene" uid="uid://dqnybiwcyv5be" path="res://core/player_stats_display/player_stats_display.tscn" id="10_hring"]
 
 [sub_resource type="Resource" id="Resource_vlfhc"]
 script = ExtResource("3_7e6lf")
@@ -114,5 +115,8 @@ layout_mode = 1
 offset_top = -50.0
 offset_right = 200.0
 offset_bottom = 50.0
+
+[node name="PlayerStatsDisplay" parent="." unique_id=1328263879 instance=ExtResource("10_hring")]
+layout_mode = 0
 
 [connection signal="pressed" from="MockShowStoreButton" to="MockShowStoreButton" method="_on_pressed"]

@@ -51,7 +51,7 @@ func can_accept_drop(data: Variant, to_slot: InvSlot) -> bool:
 
 	if inv_type == InvType.PLAYER:
 		if from_grid.inv_type == InvType.STORE:
-			if not Global.currency.can_afford(item.card.base_price):
+			if not Global.game.can_buy(item.card):
 				return false
 
 		elif from_grid.inv_type == InvType.PLAYER and to_slot.inv_card == null:
@@ -89,14 +89,13 @@ func handle_drop(data: Variant, to_slot: InvSlot) -> void:
 		return
 
 	if from_grid.inv_type == InvType.STORE and inv_type == InvType.PLAYER:
-		if not Global.currency.spend(item.card.base_price):
-			return
-		to_slot.set_item(item.duplicate(true)) # Doesnt modify store in place
+		if Global.game.try_buy(item.card):
+			to_slot.set_item(item.duplicate(true)) # Doesnt modify store in place
 		return
 
 	if from_grid.inv_type == InvType.PLAYER and inv_type == InvType.STORE:
-		Global.currency.earn(item.card.base_price)
-		from_slot.set_item(null)
+		if Global.game.try_sell(item.card):
+			from_slot.set_item(null)
 		return
 
 

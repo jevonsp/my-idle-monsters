@@ -20,5 +20,4 @@ func connect_signals() -> void:
 
 
 func _on_main_button_pressed() -> void:
-	var quant = calculate_click_power()
-	Global.currency.earn(quant)
+	Global.game.grant_click_reward()

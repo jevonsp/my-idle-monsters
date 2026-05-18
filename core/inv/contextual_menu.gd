@@ -36,6 +36,4 @@ func toggle_visible(val: bool, _inv_slot: InvSlot = null, _data: Dictionary = { 
 
 
 func _on_sell_pressed() -> void:
-	if inv_slot and inv_slot.inv_card and inv_slot.inv_card.card and Global.active_store:
-		Global.currency.earn(inv_slot.inv_card.card.base_price)
-		inv_slot.set_item(null)
+	Global.game.sell_from_context(inv_slot)

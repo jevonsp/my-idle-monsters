@@ -30,7 +30,5 @@ func on_removed_from_hotbar() -> void:
 	reset_wait_timer()
 
 
-func on_wait_timer_finished() -> void:
-	var power = base_power
-	Global.currency.earn(power)
-	reset_wait_timer()
+func get_idle_reward() -> BigNumber:
+	return base_power
