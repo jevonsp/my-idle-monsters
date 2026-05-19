@@ -65,10 +65,16 @@ func grant_click_reward() -> void:
 	currency.earn(quant)
 
 
+func get_idle_cps() -> BigNumber:
+	return unit_manager.get_monster_cps()
+
+
+func get_click_cps() -> BigNumber:
+	return player_stats.get_player_cps().multiply(click_tracker.get_raw_cps())
+
+
 func get_total_cps() -> BigNumber:
-	var monster_cps = unit_manager.get_monster_cps()
-	var player_cps = player_stats.get_player_cps().multiply(click_tracker.get_raw_cps())
-	return monster_cps.plus(player_cps)
+	return get_idle_cps().plus(get_click_cps())
 
 
 func get_context_actions(slot: InvSlot) -> Array[ContextAction]:
@@ -77,6 +83,10 @@ func get_context_actions(slot: InvSlot) -> Array[ContextAction]:
 
 func run_context_action(action_id: String, slot: InvSlot) -> bool:
 	match action_id:
+		ContextMenuBuilder.ID_EQUIP:
+			return _context_equip(slot)
+		ContextMenuBuilder.ID_UNEQUIP:
+			return _context_unequip(slot)
 		ContextMenuBuilder.ID_BUY:
 			return _context_buy(slot)
 		ContextMenuBuilder.ID_SELL:
@@ -110,4 +120,25 @@ func _context_sell(slot: InvSlot) -> bool:
 	if not try_sell_to_store(slot.inv_card.card):
 		return false
 	slot.set_item(null)
+	return true
+
+
+func _context_equip(slot: InvSlot) -> bool:
+	var hb_slot := hot_bar.get_first_empty_slot()
+	if hb_slot == null:
+		return false
+	hb_slot.set_item(slot.inv_card)
+	slot.set_item(null)
+	return true
+
+
+func _context_unequip(slot: InvSlot) -> bool:
+	var inv_slot := player_inv.get_first_empty_slot()
+	if inv_slot == null:
+		return false
+	var item := slot.inv_card
+	if item and item.card is CardMonster:
+		(item.card as CardMonster).on_removed_from_hotbar()
+	slot.set_item(null)
+	inv_slot.set_item(item)
 	return true

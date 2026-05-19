@@ -18,7 +18,7 @@ func _process(_delta: float) -> void:
 	var mouse_pos := get_viewport().get_mouse_position()
 	var center_pos := get_global_rect().get_center()
 	var dist := mouse_pos - center_pos
-	if abs(dist.x) >= 60 or abs(dist.y) >= 50:
+	if abs(dist.x) >= 70 or abs(dist.y) >= 40:
 		close()
 
 

@@ -28,4 +28,15 @@ func _on_currency_changed(money: BigNumber) -> void:
 
 
 func _on_time_ticked(_delta: float) -> void:
-	cps_label.text = "CPS: %s" % [Global.game.get_total_cps().to_string()]
+	cps_label.text = _format_cps_label()
+
+
+func _format_cps_label() -> String:
+	var game := Global.game
+	var idle := game.get_idle_cps()
+	var text := "Idle CPS: %s" % idle.to_string()
+	var raw_click := game.click_tracker.get_raw_cps()
+	if raw_click > 0.0:
+		text += " | Click: %s" % game.get_click_cps().to_string()
+		text += " | Total: %s" % game.get_total_cps().to_string()
+	return text

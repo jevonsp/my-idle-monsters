@@ -5,6 +5,19 @@ extends InvGrid
 func _ready() -> void:
 	super()
 	Global.game.hot_bar = self
+	_connect_slot_signals()
+
+
+func _connect_slot_signals() -> void:
+	for slot in slot_list:
+		if not slot.inv_card_set.is_connected(_on_hotbar_slot_changed):
+			slot.inv_card_set.connect(_on_hotbar_slot_changed)
+
+
+func _on_hotbar_slot_changed(inv_card: InvCard) -> void:
+	if inv_card and inv_card.card is CardMonster:
+		(inv_card.card as CardMonster).on_placed_on_hotbar()
+	notify_hotbar_changed()
 
 
 func get_monster_list() -> Dictionary[int, CardMonster]:
@@ -47,6 +60,7 @@ func _notify_card_left_hotbar(slot: InvSlot) -> void:
 	var card := slot.inv_card.card if slot.inv_card else null
 	if card is CardMonster:
 		(card as CardMonster).on_removed_from_hotbar()
+	notify_hotbar_changed()
 
 
 func _on_hotbar_layout_changed(from_slot: InvSlot, to_slot: InvSlot) -> void:
