@@ -8,6 +8,7 @@ signal reward_granted
 @export var base_power_exponent := 0
 @export var base_wait_time := 10.0
 
+var card_type := CardType.MONSTER
 var base_power:
 	get:
 		var bn := BigNumber.new()
