@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://4vogtlpd6x2a" path="res://assets/Bonus_010.png" id="4_ehxrr"]
 [ext_resource type="Script" uid="uid://j3l40o3hg73" path="res://app/button.gd" id="5_a7qdv"]
 [ext_resource type="Script" uid="uid://dwflin6ikckbd" path="res://core/inv/inv_hotbar.gd" id="5_qxb6r"]
-[ext_resource type="PackedScene" uid="uid://v2mu0eu3170l" path="res://core/inv/contextual_menu.tscn" id="6_ma732"]
+[ext_resource type="PackedScene" uid="uid://v2mu0eu3170l" path="res://core/context_menu/contextual_menu.tscn" id="6_ma732"]
 [ext_resource type="PackedScene" uid="uid://d1gpye07u6j6i" path="res://core/main_button/main_button.tscn" id="7_jpcm7"]
 [ext_resource type="PackedScene" uid="uid://dqnybiwcyv5be" path="res://core/player_stats_display/player_stats_display.tscn" id="10_hring"]
 

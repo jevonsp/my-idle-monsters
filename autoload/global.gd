@@ -6,10 +6,6 @@ const AUTOSAVE_INTERVAL := 30.0
 var main: Node
 var game := GameSession.new()
 var saver := SaverLoader.new()
-var click_tracker := ClickTracker.new()
-var currency := CurrencyTracker.new(0.0, 0)
-var player_stats := PlayerStatTracker.new(1.0, 0)
-var unit_manager := UnitManager.new()
 var preferences := Preferences.new()
 var currency_save: CurrencySaveParticipant
 var player_stats_save: PlayerStatsSaveParticipant
@@ -51,6 +47,9 @@ func try_autosave() -> void:
 
 
 func _register_saves() -> void:
-	currency_save = CurrencySaveParticipant.new(currency)
-	player_stats_save = PlayerStatsSaveParticipant.new(player_stats)
+	currency_save = CurrencySaveParticipant.new(game.currency)
+	player_stats_save = PlayerStatsSaveParticipant.new(game.player_stats)
 	inventory_save = InventorySaveParticipant.new()
+	saver.register_participant(currency_save)
+	saver.register_participant(player_stats_save)
+	saver.register_participant(inventory_save)

@@ -5,6 +5,7 @@ var currency: CurrencyTracker
 var player_stats: PlayerStatTracker
 var click_tracker: ClickTracker
 var unit_manager: UnitManager
+var menu_builder: ContextMenuBuilder
 var player_stats_display: PlayerStatsDisplay = null
 var hot_bar: InvHotbar = null
 var player_inv: InvGrid = null
@@ -12,16 +13,13 @@ var contextual_menu: ContextualMenu = null
 var active_store: InvGrid = null
 
 
-func initialize(
-		_currency: CurrencyTracker,
-		_unit_manager: UnitManager,
-		_player_stats: PlayerStatTracker,
-		_click_tracker: ClickTracker,
-) -> void:
-	currency = _currency
-	unit_manager = _unit_manager
-	player_stats = _player_stats
-	click_tracker = _click_tracker
+func _init() -> void:
+	currency = CurrencyTracker.new(0.0, 0)
+	player_stats = PlayerStatTracker.new(1.0, 0)
+	click_tracker = ClickTracker.new()
+	unit_manager = UnitManager.new()
+	menu_builder = ContextMenuBuilder.new()
+	unit_manager.bind(self)
 
 
 func can_buy(card: BaseCard) -> bool:

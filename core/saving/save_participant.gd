@@ -1,7 +1,7 @@
 class_name SaveParticipant
 extends RefCounted
 
-## Implement save hooks on subclasses. Register instances only via Global.register_save_participants().
+## Implement save hooks on subclasses. Register instances only via Global._register_saves().
 
 
 func get_save_id() -> String:

@@ -1,0 +1,2 @@
+class_name ContextMenuBuilder
+extends RefCounted

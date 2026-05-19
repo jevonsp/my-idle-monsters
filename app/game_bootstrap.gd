@@ -5,13 +5,6 @@ extends RefCounted
 static func setup() -> void:
 	if Global.saver.save_game_exists():
 		Global.saver.load_game()
-	Global.game.initialize(
-		Global.currency,
-		Global.unit_manager,
-		Global.player_stats,
-		Global.click_tracker,
-	)
-	Global.game.unit_manager.bind(Global.game)
 	Global.game.unit_manager.connect_signals()
 	Global.game.click_tracker.connect_signals()
 	Global.game.player_stats_display.connect_signals()

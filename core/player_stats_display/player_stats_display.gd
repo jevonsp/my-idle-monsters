@@ -16,11 +16,11 @@ func connect_signals() -> void:
 		EventBus.game_loaded.connect(_on_game_loaded)
 	if not EventBus.time_ticked.is_connected(_on_time_ticked):
 		EventBus.time_ticked.connect(_on_time_ticked)
-	_on_currency_changed(Global.currency.money)
+	_on_currency_changed(Global.game.currency.money)
 
 
 func _on_game_loaded() -> void:
-	_on_currency_changed(Global.currency.money)
+	_on_currency_changed(Global.game.currency.money)
 
 
 func _on_currency_changed(money: BigNumber) -> void:

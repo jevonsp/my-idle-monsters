@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://v2mu0eu3170l"]
 
-[ext_resource type="Script" uid="uid://5qx88w4or45f" path="res://core/inv/contextual_menu.gd" id="1_0lbxb"]
+[ext_resource type="Script" uid="uid://5qx88w4or45f" path="res://core/context_menu/contextual_menu.gd" id="1_0lbxb"]
 
 [node name="ContextualMenu" type="VBoxContainer" unique_id=743798992]
 offset_left = -12.0
