@@ -6,6 +6,7 @@ var player_stats: PlayerStatTracker
 var click_tracker: ClickTracker
 var unit_manager: UnitManager
 var menu_builder: ContextMenuBuilder
+var context_action_runner: ContextActionRunner
 var player_stats_display: PlayerStatsDisplay = null
 var hot_bar: InvHotbar = null
 var player_inv: InvGrid = null
@@ -19,6 +20,7 @@ func _init() -> void:
 	click_tracker = ClickTracker.new()
 	unit_manager = UnitManager.new()
 	menu_builder = ContextMenuBuilder.new(self)
+	context_action_runner = ContextActionRunner.new()
 	unit_manager.bind_game_session(self)
 
 
@@ -84,61 +86,13 @@ func get_context_actions(slot: InvSlot) -> Array[ContextAction]:
 func run_context_action(action_id: String, slot: InvSlot) -> bool:
 	match action_id:
 		ContextMenuBuilder.ID_EQUIP:
-			return _context_equip(slot)
+			return context_action_runner.context_equip(slot, self)
 		ContextMenuBuilder.ID_UNEQUIP:
-			return _context_unequip(slot)
+			return context_action_runner.context_unequip(slot, self)
 		ContextMenuBuilder.ID_BUY:
-			return _context_buy(slot)
+			return context_action_runner.context_buy(slot, self)
 		ContextMenuBuilder.ID_SELL:
-			return _context_sell(slot)
+			return context_action_runner.context_sell(slot, self)
 		_:
 			push_warning("Unknown context action: %s" % action_id)
 			return false
-
-
-func _context_buy(slot: InvSlot) -> bool:
-	if not slot or not slot.inv_card or not slot.inv_card.card:
-		return false
-	if not can_buy_from_store(slot.inv_card.card):
-		return false
-	var item := slot.inv_card
-	var bought := try_buy_from_store(item)
-	if bought and not player_inv:
-		return false
-	var to_slot := player_inv.get_first_empty_slot()
-	if not to_slot:
-		return false
-	to_slot.set_item(bought)
-	return false
-
-
-func _context_sell(slot: InvSlot) -> bool:
-	if not slot or not slot.inv_card or not slot.inv_card.card:
-		return false
-	if not active_store:
-		return false
-	if not try_sell_to_store(slot.inv_card.card):
-		return false
-	slot.set_item(null)
-	return true
-
-
-func _context_equip(slot: InvSlot) -> bool:
-	var hb_slot := hot_bar.get_first_empty_slot()
-	if hb_slot == null:
-		return false
-	hb_slot.set_item(slot.inv_card.duplicate(true))
-	slot.set_item(null)
-	return true
-
-
-func _context_unequip(slot: InvSlot) -> bool:
-	var inv_slot := player_inv.get_first_empty_slot()
-	if inv_slot == null:
-		return false
-	var item := slot.inv_card
-	if item and item.card is CardMonster:
-		(item.card as CardMonster).on_removed_from_hotbar()
-	slot.set_item(null)
-	inv_slot.set_item(item)
-	return true

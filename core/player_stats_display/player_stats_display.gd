@@ -5,10 +5,6 @@ extends Control
 @onready var cps_label: Label = $VBoxContainer/CpsLabel
 
 
-func _ready() -> void:
-	Global.game.player_stats_display = self
-
-
 func connect_signals() -> void:
 	if not EventBus.currency_changed.is_connected(_on_currency_changed):
 		EventBus.currency_changed.connect(_on_currency_changed)

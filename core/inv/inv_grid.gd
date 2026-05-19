@@ -1,7 +1,7 @@
 class_name InvGrid
 extends GridContainer
 
-enum InvType { PLAYER, STORE }
+enum InvType { PLAYER, STORE, JOB }
 
 const INV_SLOT = preload("uid://pjbq0neklcw1")
 
@@ -23,8 +23,6 @@ func _ready() -> void:
 	_prepare_slots()
 	_set_slots()
 	game = Global.game
-	if inv_type == InvType.PLAYER and not self is InvHotbar:
-		game.player_inv = self
 	if visible:
 		_register_store()
 

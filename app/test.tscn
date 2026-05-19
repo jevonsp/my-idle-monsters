@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://dwflin6ikckbd" path="res://core/inv/inv_hotbar.gd" id="5_qxb6r"]
 [ext_resource type="Resource" uid="uid://d0kqwe32nvflb" path="res://content/cards/card_monster/001.tres" id="5_rlpsy"]
 [ext_resource type="Resource" uid="uid://bhin2vfkoi0ax" path="res://content/cards/card_monster/002.tres" id="6_8u3dk"]
-[ext_resource type="PackedScene" uid="uid://v2mu0eu3170l" path="res://core/context_menu/contextual_menu.tscn" id="6_ma732"]
+[ext_resource type="PackedScene" uid="uid://v2mu0eu3170l" path="res://core/context/contextual_menu.tscn" id="6_ma732"]
 [ext_resource type="Resource" uid="uid://6lph6x84dcyc" path="res://content/cards/card_monster/003.tres" id="7_c4glq"]
 [ext_resource type="PackedScene" uid="uid://d1gpye07u6j6i" path="res://core/main_button/main_button.tscn" id="7_jpcm7"]
 [ext_resource type="Resource" uid="uid://cyv4eryq7neg5" path="res://content/cards/card_monster/004.tres" id="8_01hj3"]

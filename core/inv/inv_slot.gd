@@ -67,6 +67,9 @@ func _notification(what: int) -> void:
 
 
 func set_item(_inv_card: InvCard) -> void:
+	if inv_grid is InvHotbar and inv_card and inv_card.card is CardMonster:
+		if _inv_card == null or _inv_card != inv_card:
+			(inv_card.card as CardMonster).on_removed_from_hotbar()
 	inv_card = _inv_card
 	tooltip_text = tooltip
 	display_item()

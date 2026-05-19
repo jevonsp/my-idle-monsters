@@ -8,17 +8,13 @@ var buttons: Array[Button] = []
 var inv_slot: InvSlot = null
 
 
-func _ready() -> void:
-	Global.game.contextual_menu = self
-
-
 func _process(_delta: float) -> void:
 	if not visible:
 		return
 	var mouse_pos := get_viewport().get_mouse_position()
 	var center_pos := get_global_rect().get_center()
 	var dist := mouse_pos - center_pos
-	if abs(dist.x) >= 70 or abs(dist.y) >= 40:
+	if abs(dist.x) >= 70 or abs(dist.y) >= 35:
 		close()
 
 
@@ -29,7 +25,8 @@ func open(slot: InvSlot) -> void:
 
 	inv_slot = slot
 	_build_buttons(actions)
-	global_position = get_viewport().get_mouse_position() + Vector2(0, -20)
+	var min_size := get_combined_minimum_size()
+	global_position = get_viewport().get_mouse_position() - Vector2(min_size.x * 0.5, 30)
 	processing = true
 	visible = true
 

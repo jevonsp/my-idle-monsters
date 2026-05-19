@@ -53,3 +53,4 @@ func _register_saves() -> void:
 	saver.register_participant(currency_save)
 	saver.register_participant(player_stats_save)
 	saver.register_participant(inventory_save)
+	saver.register_participant(preferences)
