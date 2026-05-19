@@ -127,7 +127,7 @@ func _context_equip(slot: InvSlot) -> bool:
 	var hb_slot := hot_bar.get_first_empty_slot()
 	if hb_slot == null:
 		return false
-	hb_slot.set_item(slot.inv_card)
+	hb_slot.set_item(slot.inv_card.duplicate(true))
 	slot.set_item(null)
 	return true
 

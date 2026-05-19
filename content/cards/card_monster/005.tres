@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardMonster" format=3 uid="uid://c8n8djidhm6ua"]
+
+[ext_resource type="Script" uid="uid://c111h4hr10qqe" path="res://core/card/card_monster.gd" id="1_sm5vv"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sm5vv"]
+load_path = "res://.godot/imported/01_Monster_Sheet.png-6afc0a8d25f8d4705b236d6ddce02280.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pet4v"]
+atlas = SubResource("CompressedTexture2D_sm5vv")
+region = Rect2(180, 0, 60, 60)
+
+[resource]
+script = ExtResource("1_sm5vv")
+base_power_exponent = 5
+name = "Mon005"
+texture = SubResource("AtlasTexture_pet4v")
+base_price_exponent = 5
+metadata/_custom_type_script = "uid://c111h4hr10qqe"

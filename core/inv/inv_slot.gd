@@ -9,9 +9,9 @@ static var _ignore_release_pickup := false
 
 @export var inv_card: InvCard = null:
 	set(val):
+		_disconnect_reward()
 		inv_card = val
-		if inv_card:
-			connect_card()
+		connect_card()
 
 var inv_grid: InvGrid = null
 var inv_slot := 0
@@ -82,11 +82,22 @@ func display_item() -> void:
 		texture_rect.texture = inv_card.card.texture
 
 
+func _disconnect_reward() -> void:
+	if inv_card == null or inv_card.card == null or not inv_card.card is CardMonster:
+		return
+	var monster: CardMonster = inv_card.card
+	if monster.reward_granted.is_connected(_on_reward_granted):
+		monster.reward_granted.disconnect(_on_reward_granted)
+
+
 func connect_card() -> void:
-	if inv_card and inv_card.card is CardMonster:
-		var monster: CardMonster = inv_card.card
-		if not monster.reward_granted.is_connected(_on_reward_granted):
-			monster.reward_granted.connect(_on_reward_granted)
+	if inv_card == null or inv_card.card == null or not inv_card.card is CardMonster:
+		return
+	if not inv_grid is InvHotbar:
+		return
+	var monster: CardMonster = inv_card.card
+	if not monster.reward_granted.is_connected(_on_reward_granted):
+		monster.reward_granted.connect(_on_reward_granted)
 
 
 func combined_tween() -> void:

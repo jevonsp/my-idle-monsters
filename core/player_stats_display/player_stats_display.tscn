@@ -16,7 +16,8 @@ offset_bottom = 143.0
 
 [node name="CurrencyLabel" type="Label" parent="VBoxContainer" unique_id=974960749]
 layout_mode = 2
-text = "1.0"
+text = "Money: 1.0"
 
 [node name="CpsLabel" type="Label" parent="VBoxContainer" unique_id=577270916]
 layout_mode = 2
+text = "Idle CPS: .1"

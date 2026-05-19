@@ -29,12 +29,6 @@ func _ready() -> void:
 		_register_store()
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("no"):
-		if inv_type == InvType.STORE:
-			toggle_visible(false)
-
-
 func connect_signals() -> void:
 	pass
 

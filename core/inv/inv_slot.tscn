@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://pjbq0neklcw1"]
 
 [ext_resource type="Script" uid="uid://6uwjy6q4rrc0" path="res://core/inv/inv_slot.gd" id="1_h76ro"]
-[ext_resource type="Texture2D" uid="uid://ct6mwssmxjhqs" path="res://assets/Bonus_008.png" id="2_h76ro"]
+[ext_resource type="Texture2D" uid="uid://c1njh6uqur0pm" path="res://content/cards/card_monster/monster_atlas_texture.tres" id="2_h76ro"]
 
 [node name="InvSlot" type="MarginContainer" unique_id=59401916]
 custom_minimum_size = Vector2(60, 60)
@@ -13,12 +13,11 @@ mouse_filter = 2
 
 [node name="Pivot" type="Control" parent="." unique_id=952975748]
 layout_mode = 2
-mouse_filter = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="Pivot" unique_id=40863949]
-mouse_filter = 2
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -31,5 +30,6 @@ offset_right = 30.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("2_h76ro")
 expand_mode = 3

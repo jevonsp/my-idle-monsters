@@ -4,21 +4,45 @@
 [ext_resource type="Texture2D" uid="uid://ct6mwssmxjhqs" path="res://assets/Bonus_008.png" id="2_6t1pe"]
 [ext_resource type="Script" uid="uid://c111h4hr10qqe" path="res://core/card/card_monster.gd" id="3_7e6lf"]
 [ext_resource type="Script" uid="uid://b68dccp060bvq" path="res://core/inv/inv_card.gd" id="3_ehxrr"]
-[ext_resource type="Texture2D" uid="uid://4vogtlpd6x2a" path="res://assets/Bonus_010.png" id="4_ehxrr"]
-[ext_resource type="Script" uid="uid://j3l40o3hg73" path="res://app/button.gd" id="5_a7qdv"]
 [ext_resource type="Script" uid="uid://dwflin6ikckbd" path="res://core/inv/inv_hotbar.gd" id="5_qxb6r"]
+[ext_resource type="Resource" uid="uid://d0kqwe32nvflb" path="res://content/cards/card_monster/001.tres" id="5_rlpsy"]
+[ext_resource type="Resource" uid="uid://bhin2vfkoi0ax" path="res://content/cards/card_monster/002.tres" id="6_8u3dk"]
 [ext_resource type="PackedScene" uid="uid://v2mu0eu3170l" path="res://core/context_menu/contextual_menu.tscn" id="6_ma732"]
+[ext_resource type="Resource" uid="uid://6lph6x84dcyc" path="res://content/cards/card_monster/003.tres" id="7_c4glq"]
 [ext_resource type="PackedScene" uid="uid://d1gpye07u6j6i" path="res://core/main_button/main_button.tscn" id="7_jpcm7"]
+[ext_resource type="Resource" uid="uid://cyv4eryq7neg5" path="res://content/cards/card_monster/004.tres" id="8_01hj3"]
+[ext_resource type="Resource" uid="uid://c8n8djidhm6ua" path="res://content/cards/card_monster/005.tres" id="9_78vu4"]
+[ext_resource type="Resource" uid="uid://8ywt66gm4q21" path="res://content/cards/card_monster/006.tres" id="10_annlo"]
 [ext_resource type="PackedScene" uid="uid://dqnybiwcyv5be" path="res://core/player_stats_display/player_stats_display.tscn" id="10_hring"]
 
-[sub_resource type="Resource" id="Resource_vlfhc"]
-script = ExtResource("3_7e6lf")
-texture = ExtResource("4_ehxrr")
-metadata/_custom_type_script = "uid://c111h4hr10qqe"
-
-[sub_resource type="Resource" id="Resource_inv_a7qdv"]
+[sub_resource type="Resource" id="Resource_w3w8l"]
 script = ExtResource("3_ehxrr")
-card = SubResource("Resource_vlfhc")
+card = ExtResource("5_rlpsy")
+metadata/_custom_type_script = "uid://b68dccp060bvq"
+
+[sub_resource type="Resource" id="Resource_x6v5h"]
+script = ExtResource("3_ehxrr")
+card = ExtResource("6_8u3dk")
+metadata/_custom_type_script = "uid://b68dccp060bvq"
+
+[sub_resource type="Resource" id="Resource_o50m4"]
+script = ExtResource("3_ehxrr")
+card = ExtResource("7_c4glq")
+metadata/_custom_type_script = "uid://b68dccp060bvq"
+
+[sub_resource type="Resource" id="Resource_pip61"]
+script = ExtResource("3_ehxrr")
+card = ExtResource("8_01hj3")
+metadata/_custom_type_script = "uid://b68dccp060bvq"
+
+[sub_resource type="Resource" id="Resource_g6aei"]
+script = ExtResource("3_ehxrr")
+card = ExtResource("9_78vu4")
+metadata/_custom_type_script = "uid://b68dccp060bvq"
+
+[sub_resource type="Resource" id="Resource_v3ll0"]
+script = ExtResource("3_ehxrr")
+card = ExtResource("10_annlo")
 metadata/_custom_type_script = "uid://b68dccp060bvq"
 
 [sub_resource type="Resource" id="Resource_867lq"]
@@ -51,7 +75,6 @@ offset_bottom = 0.0
 grow_vertical = 1
 
 [node name="StoreInv" parent="." unique_id=1435970996 instance=ExtResource("1_8e6ll")]
-visible = false
 layout_mode = 1
 offset_left = 0.0
 offset_top = 0.0
@@ -59,7 +82,12 @@ offset_right = 0.0
 offset_bottom = 0.0
 inv_type = 1
 inv_list = Dictionary[int, ExtResource("3_ehxrr")]({
-0: SubResource("Resource_inv_a7qdv")
+0: SubResource("Resource_w3w8l"),
+1: SubResource("Resource_x6v5h"),
+2: SubResource("Resource_o50m4"),
+3: SubResource("Resource_pip61"),
+4: SubResource("Resource_g6aei"),
+5: SubResource("Resource_v3ll0")
 })
 
 [node name="PlayerHotBar" parent="." unique_id=96594389 instance=ExtResource("1_8e6ll")]
@@ -78,22 +106,6 @@ inv_list = Dictionary[int, ExtResource("3_ehxrr")]({
 })
 num_slots = 5
 accepted_card_types = Array[int]([0])
-
-[node name="MockShowStoreButton" type="Button" parent="." unique_id=627030694 node_paths=PackedStringArray("store")]
-custom_minimum_size = Vector2(200, 100)
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -8.0
-offset_top = -4.0
-offset_bottom = 4.0
-grow_horizontal = 0
-grow_vertical = 2
-script = ExtResource("5_a7qdv")
-store = NodePath("../StoreInv")
 
 [node name="ContextualMenu" parent="." unique_id=743798992 instance=ExtResource("6_ma732")]
 visible = false
@@ -118,5 +130,3 @@ offset_bottom = 50.0
 
 [node name="PlayerStatsDisplay" parent="." unique_id=1328263879 instance=ExtResource("10_hring")]
 layout_mode = 0
-
-[connection signal="pressed" from="MockShowStoreButton" to="MockShowStoreButton" method="_on_pressed"]
