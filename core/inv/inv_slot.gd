@@ -32,15 +32,8 @@ var _pressed_on_this_slot := false
 
 
 func _ready() -> void:
-	_pass_mouse_to_slot($Panel)
-	_pass_mouse_to_slot(pivot)
-	_pass_mouse_to_slot(texture_rect)
 	connect_card()
 	display_item()
-
-
-func _pass_mouse_to_slot(control: Control) -> void:
-	control.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 
 func _gui_input(event: InputEvent) -> void:
