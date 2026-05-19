@@ -5,7 +5,7 @@ var game: GameSession
 var cards: Dictionary[int, CardMonster] = { }
 
 
-func bind(_game: GameSession) -> void:
+func bind_game_session(_game: GameSession) -> void:
 	game = _game
 
 

@@ -161,7 +161,7 @@ func _get_drag_preview() -> TextureRect:
 
 
 func _open_contextual_menu() -> void:
-	Global.game.contextual_menu.toggle_visible(true, self)
+	Global.game.contextual_menu.open(self)
 
 
 func _on_reward_granted() -> void:

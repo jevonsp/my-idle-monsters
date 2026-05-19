@@ -126,6 +126,14 @@ func reload_from_slots() -> void:
 		slot.display_item()
 
 
+func get_first_empty_slot() -> InvSlot:
+	for i in range(slot_list.size()):
+		var slot: InvSlot = slot_list[i]
+		if not slot.inv_card:
+			return slot
+	return null
+
+
 func _prepare_slots() -> void:
 	for i in range(num_slots):
 		var slot: InvSlot = INV_SLOT.instantiate()
