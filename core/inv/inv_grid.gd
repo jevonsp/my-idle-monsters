@@ -14,6 +14,7 @@ const INV_SLOT = preload("uid://pjbq0neklcw1")
 	BaseCard.CardType.GEAR,
 ]
 
+var game: GameSession
 var processing := visible
 var slot_list: Array[InvSlot] = []
 
@@ -21,8 +22,9 @@ var slot_list: Array[InvSlot] = []
 func _ready() -> void:
 	_prepare_slots()
 	_set_slots()
+	game = Global.game
 	if inv_type == InvType.PLAYER and not self is InvHotbar:
-		Global.player_inv = self
+		game.player_inv = self
 	if visible:
 		_register_store()
 
@@ -53,7 +55,7 @@ func can_accept_drop(data: Variant, to_slot: InvSlot) -> bool:
 
 	if inv_type == InvType.PLAYER:
 		if from_grid.inv_type == InvType.STORE:
-			if not Global.game.can_buy(item.card):
+			if not game.can_buy_from_store(item.card):
 				return false
 
 		elif from_grid.inv_type == InvType.PLAYER and to_slot.inv_card == null:
@@ -91,12 +93,13 @@ func handle_drop(data: Variant, to_slot: InvSlot) -> void:
 		return
 
 	if from_grid.inv_type == InvType.STORE and inv_type == InvType.PLAYER:
-		if Global.game.try_buy(item.card):
-			to_slot.set_item(item.duplicate(true)) # Doesnt modify store in place
+		var bought := game.try_buy_from_store(item)
+		if bought:
+			to_slot.set_item(bought)
 		return
 
 	if from_grid.inv_type == InvType.PLAYER and inv_type == InvType.STORE:
-		if Global.game.try_sell(item.card):
+		if game.try_sell_to_store(item.card):
 			from_slot.set_item(null)
 		return
 
@@ -116,6 +119,11 @@ func toggle_visible(val: bool) -> void:
 		_register_store()
 		return
 	_deregister_store()
+
+
+func reload_from_slots() -> void:
+	for slot in slot_list:
+		slot.display_item()
 
 
 func _prepare_slots() -> void:
@@ -138,15 +146,10 @@ func _set_slots() -> void:
 
 func _register_store() -> bool:
 	if inv_type == InvType.STORE:
-		Global.active_store = self
+		Global.game.active_store = self
 		return true
 	return false
 
 
 func _deregister_store() -> void:
-	Global.active_store = null
-
-
-func reload_from_slots() -> void:
-	for slot in slot_list:
-		slot.display_item()
+	Global.game.active_store = null

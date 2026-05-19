@@ -4,21 +4,16 @@ const CANVAS_LAYER := 20
 const AUTOSAVE_INTERVAL := 30.0
 
 var main: Node
+var game := GameSession.new()
 var saver := SaverLoader.new()
 var click_tracker := ClickTracker.new()
 var currency := CurrencyTracker.new(0.0, 0)
 var player_stats := PlayerStatTracker.new(1.0, 0)
 var unit_manager := UnitManager.new()
-var game := GameSession.new()
 var preferences := Preferences.new()
 var currency_save: CurrencySaveParticipant
 var player_stats_save: PlayerStatsSaveParticipant
 var inventory_save: InventorySaveParticipant
-var player_stats_display: PlayerStatsDisplay = null
-var hot_bar: InvHotbar = null
-var player_inv: InvGrid = null
-var contextual_menu: ContextualMenu = null
-var active_store: InvGrid = null
 var bootstrapped := false
 var _autosave_timer := 0.0
 

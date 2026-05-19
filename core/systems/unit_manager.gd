@@ -1,7 +1,12 @@
 class_name UnitManager
 extends RefCounted
 
+var game: GameSession
 var cards: Dictionary[int, CardMonster] = { }
+
+
+func bind(_game: GameSession) -> void:
+	game = _game
 
 
 func connect_signals() -> void:
@@ -30,4 +35,4 @@ func _on_time_ticked(delta: float) -> void:
 		var monster: CardMonster = cards[key]
 		monster.wait_timer += delta
 		if monster.is_ready:
-			Global.game.grant_idle_reward(monster)
+			game.grant_idle_reward(monster)

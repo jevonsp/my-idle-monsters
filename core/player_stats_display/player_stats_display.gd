@@ -6,7 +6,7 @@ extends Control
 
 
 func _ready() -> void:
-	Global.player_stats_display = self
+	Global.game.player_stats_display = self
 
 
 func connect_signals() -> void:

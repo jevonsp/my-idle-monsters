@@ -4,7 +4,7 @@ extends InvGrid
 
 func _ready() -> void:
 	super()
-	Global.hot_bar = self
+	Global.game.hot_bar = self
 
 
 func get_monster_list() -> Dictionary[int, CardMonster]:
@@ -38,7 +38,7 @@ func handle_drop(data: Variant, to_slot: InvSlot) -> void:
 func swap_items(data: Variant, to_slot: InvSlot) -> void:
 	var from_slot: InvSlot = data.get("from_slot")
 	super.swap_items(data, to_slot)
-	if from_slot.inv_grid == Global.hot_bar:
+	if from_slot.inv_grid == Global.game.hot_bar:
 		_notify_card_left_hotbar(from_slot)
 	notify_hotbar_changed()
 

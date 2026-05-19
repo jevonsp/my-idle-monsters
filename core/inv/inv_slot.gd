@@ -23,15 +23,24 @@ var tooltip := "":
 		return ""
 	set(val):
 		tooltip = val
+var tween: Tween = null
 var _press_pos := Vector2.ZERO
 var _pressed_on_this_slot := false
 
-@onready var texture_rect: TextureRect = $TextureRect
+@onready var pivot: Control = $Pivot
+@onready var texture_rect: TextureRect = $Pivot/TextureRect
 
 
 func _ready() -> void:
+	_pass_mouse_to_slot($Panel)
+	_pass_mouse_to_slot(pivot)
+	_pass_mouse_to_slot(texture_rect)
 	connect_card()
 	display_item()
+
+
+func _pass_mouse_to_slot(control: Control) -> void:
+	control.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 
 func _gui_input(event: InputEvent) -> void:
@@ -51,8 +60,7 @@ func _gui_input(event: InputEvent) -> void:
 			var data: Variant = _make_drag_data()
 			if data == null:
 				return
-			force_drag(data, _get_drag_preview())
-			texture_rect.modulate.a = 0.5
+			call_deferred("_begin_click_drag", data)
 			accept_event()
 		return
 	if event.is_action("secondary_input") and not mb.pressed:
@@ -88,6 +96,17 @@ func connect_card() -> void:
 			monster.reward_granted.connect(_on_reward_granted)
 
 
+func combined_tween() -> void:
+	var _tween := get_tree().create_tween()
+	tween = _tween
+	_tween.tween_property(pivot, "rotation", PI / 8, 0.2)
+	_tween.parallel().tween_property(texture_rect, "scale", Vector2(1.1, 1.1), 0.2)
+	_tween.tween_property(pivot, "rotation", 0.0, 0.2)
+	_tween.parallel().tween_property(texture_rect, "scale", Vector2.ONE, 0.2)
+	await _tween.finished
+	tween = null
+
+
 func _should_click_pickup(mb: InputEventMouseButton) -> bool:
 	if not _pressed_on_this_slot:
 		return false
@@ -103,6 +122,11 @@ func _should_click_pickup(mb: InputEventMouseButton) -> bool:
 
 func _on_drag_end(_successful: bool) -> void:
 	display_item()
+
+
+func _begin_click_drag(data: Variant) -> void:
+	force_drag(data, _get_drag_preview())
+	texture_rect.modulate.a = 0.5
 
 
 func _make_drag_data() -> Variant:
@@ -144,8 +168,11 @@ func _get_drag_preview() -> TextureRect:
 
 
 func _open_contextual_menu() -> void:
-	Global.contextual_menu.toggle_visible(true, self)
+	Global.game.contextual_menu.toggle_visible(true, self)
 
 
 func _on_reward_granted() -> void:
-	print("would tween here")
+	if tween:
+		tween.kill()
+		tween = null
+	await combined_tween()

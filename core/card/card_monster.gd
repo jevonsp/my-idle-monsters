@@ -1,6 +1,7 @@
 class_name CardMonster
 extends BaseCard
 
+@warning_ignore("unused_signal")
 signal reward_granted
 
 @export var base_power_mantissa := 1.0

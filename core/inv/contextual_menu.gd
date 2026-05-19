@@ -7,7 +7,7 @@ var inv_slot: InvSlot = null
 
 
 func _ready() -> void:
-	Global.contextual_menu = self
+	Global.game.contextual_menu = self
 	for child in get_children():
 		if child is Button:
 			buttons.append(child)
@@ -38,7 +38,7 @@ func toggle_visible(val: bool, _inv_slot: InvSlot = null, _data: Dictionary = { 
 func _on_sell_pressed() -> void:
 	if not inv_slot or not inv_slot.inv_card or not inv_slot.inv_card.card:
 		return
-	if not Global.active_store:
+	if not Global.game.active_store:
 		return
-	if Global.game.try_sell(inv_slot.inv_card.card):
+	if Global.game.try_sell_to_store(inv_slot.inv_card.card):
 		inv_slot.set_item(null)
