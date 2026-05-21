@@ -2,5 +2,5 @@ class_name FightScene
 extends Scene
 
 
-func set_scene_layout() -> void:
-	print("set fight layout")
+func request_scene_layout() -> void:
+	pass

@@ -28,7 +28,7 @@ func _open(scene: Scene) -> void:
 	_set_layer(scene)
 	_toggle_visibility(scene, true)
 	_toggle_processing(scene, true)
-	scene.set_scene_layout()
+	scene.request_scene_layout()
 	var prev := _get_previous_layer()
 	if prev:
 		_toggle_visibility(prev, false)
@@ -67,13 +67,13 @@ func _close(scene: Scene) -> void:
 	if _deregister(scene):
 		_toggle_visibility(scene, false)
 		_toggle_processing(scene, false)
-		scene.revert_to_main_layout()
+		EventBus.request_layout.emit(PlayerInvCanvasLayer.Layout.MAIN)
 		_next_layer -= 1
 		var restored := _get_previous_layer()
 		if restored:
 			_toggle_visibility(restored, true)
 			_toggle_processing(restored, true)
-			scene.set_scene_layout()
+			restored.request_scene_layout()
 
 
 func _deregister(scene: Scene) -> bool:

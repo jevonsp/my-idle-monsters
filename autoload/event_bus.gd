@@ -7,7 +7,7 @@ signal time_ticked(delta: float)
 signal currency_changed(money: BigNumber)
 signal hotbar_changed(cards: Dictionary)
 signal screen_manager_toggle(scene: Scene, val: bool)
-signal request_layout(node: Node, preset: Control.LayoutPreset, margin: int, visible: bool)
+signal request_layout(layout: PlayerInvCanvasLayer.Layout)
 
 
 @warning_ignore_restore("unused_signal")

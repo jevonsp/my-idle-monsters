@@ -23,18 +23,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		_close_scene()
 
 
-func set_scene_layout() -> void:
+func request_scene_layout() -> void:
 	pass
-
-
-func revert_to_main_layout() -> void:
-	print("revert to main layout")
-	EventBus.request_layout.emit(
-		Global.game.player_inv,
-		Control.LayoutPreset.PRESET_CENTER_TOP,
-		0,
-		true,
-	)
 
 
 func _on_back_button_pressed() -> void:
