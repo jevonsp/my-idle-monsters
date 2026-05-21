@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d4elg85kn1fv0"]
 
-[ext_resource type="Script" uid="uid://6xaasmjxnn6o" path="res://core/inv/inv_job_grid.gd" id="1_5hdor"]
+[ext_resource type="Script" uid="uid://6xaasmjxnn6o" path="res://core/scenes/main_scene/inv/inv_job_grid.gd" id="1_5hdor"]
 
 [node name="InvJobGrid" type="GridContainer" unique_id=677457865]
 offset_right = 40.0

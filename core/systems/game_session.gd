@@ -7,11 +7,15 @@ var click_tracker: ClickTracker
 var unit_manager: UnitManager
 var menu_builder: ContextMenuBuilder
 var context_action_runner: ContextActionRunner
+var screen_manager: ScreenManager
 var player_stats_display: PlayerStatsDisplay = null
 var hot_bar: InvHotbar = null
 var player_inv: InvGrid = null
 var contextual_menu: ContextualMenu = null
 var active_store: InvGrid = null
+var store_scene: StoreScene = null
+var job_scene: JobScene = null
+var fight_scene: FightScene = null
 
 
 func _init() -> void:
@@ -22,6 +26,7 @@ func _init() -> void:
 	menu_builder = ContextMenuBuilder.new(self)
 	context_action_runner = ContextActionRunner.new()
 	unit_manager.bind_game_session(self)
+	screen_manager = ScreenManager.new()
 
 
 func can_buy(card: BaseCard) -> bool:

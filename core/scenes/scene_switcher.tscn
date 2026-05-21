@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://dddev7vnlpiwx"]
+
+[ext_resource type="Script" uid="uid://bj5jtmgmw4pkl" path="res://core/scenes/scene_switcher.gd" id="1_40q1q"]
+
+[node name="SceneSwitcher" type="VBoxContainer" unique_id=60747736]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -158.0
+offset_bottom = 177.0
+grow_horizontal = 0
+script = ExtResource("1_40q1q")
+
+[node name="Store" type="Button" parent="." unique_id=969617005]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Store"
+
+[node name="Job" type="Button" parent="." unique_id=1014729746]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Job"
+
+[node name="Fight" type="Button" parent="." unique_id=1794672688]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Fight"
+
+[connection signal="pressed" from="Store" to="." method="_on_store_pressed"]
+[connection signal="pressed" from="Job" to="." method="_on_job_pressed"]
+[connection signal="pressed" from="Fight" to="." method="_on_fight_pressed"]

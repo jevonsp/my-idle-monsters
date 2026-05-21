@@ -3,7 +3,7 @@ extends Node
 const CANVAS_LAYER := 20
 const AUTOSAVE_INTERVAL := 30.0
 
-var main: Node
+var main: Main
 var game := GameSession.new()
 var saver := SaverLoader.new()
 var preferences := Preferences.new()

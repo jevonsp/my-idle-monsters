@@ -6,6 +6,7 @@ static func setup() -> void:
 	if Global.saver.save_game_exists():
 		Global.saver.load_game()
 	_set_ui_nodes()
+	_set_scene_nodes()
 	Global.game.unit_manager.connect_signals()
 	Global.game.click_tracker.connect_signals()
 	Global.game.player_stats_display.connect_signals()
@@ -20,6 +21,20 @@ static func _set_ui_nodes() -> void:
 	game.hot_bar = main.get_node(main.hot_bar)
 	game.player_stats_display = main.get_node(main.player_stats_display)
 	game.contextual_menu = main.get_node(main.contextual_menu)
+
+
+static func _set_scene_nodes() -> void:
+	var store_node = Global.main.get_node_or_null(Global.main.store_path)
+	if store_node:
+		Global.game.store_scene = store_node
+
+	var job_node = Global.main.get_node_or_null(Global.main.job_path)
+	if job_node:
+		Global.game.job_scene = job_node
+
+	var fight_node = Global.main.get_node_or_null(Global.main.fight_path)
+	if fight_node:
+		Global.game.fight_scene = fight_node
 
 
 static func _refresh_ui_after_load() -> void:

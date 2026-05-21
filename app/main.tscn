@@ -1,80 +1,50 @@
 [gd_scene format=3 uid="uid://6llk1cy8qi4v"]
 
 [ext_resource type="Script" uid="uid://cnss05q1hiseg" path="res://app/main.gd" id="1_yblnd"]
-[ext_resource type="PackedScene" uid="uid://bciupdeplw7ta" path="res://core/inv/inv_grid.tscn" id="2_di1jt"]
-[ext_resource type="Script" uid="uid://b68dccp060bvq" path="res://core/inv/inv_card.gd" id="3_k2jj4"]
-[ext_resource type="Resource" uid="uid://d0kqwe32nvflb" path="res://content/cards/card_monster/mon_001.tres" id="4_nj2lw"]
-[ext_resource type="Resource" uid="uid://bhin2vfkoi0ax" path="res://content/cards/card_monster/mon_002.tres" id="5_qpuqg"]
-[ext_resource type="Resource" uid="uid://6lph6x84dcyc" path="res://content/cards/card_monster/mon_003.tres" id="6_lfrbt"]
-[ext_resource type="Resource" uid="uid://cyv4eryq7neg5" path="res://content/cards/card_monster/mon_004.tres" id="7_8th36"]
-[ext_resource type="Resource" uid="uid://c8n8djidhm6ua" path="res://content/cards/card_monster/mon_005.tres" id="8_i2r8w"]
-[ext_resource type="Resource" uid="uid://8ywt66gm4q21" path="res://content/cards/card_monster/mon_006.tres" id="9_m3sc2"]
-[ext_resource type="Script" uid="uid://dwflin6ikckbd" path="res://core/inv/inv_hotbar.gd" id="10_j6djv"]
-[ext_resource type="Script" uid="uid://c111h4hr10qqe" path="res://core/card/card_monster.gd" id="11_05x0e"]
-[ext_resource type="Texture2D" uid="uid://ct6mwssmxjhqs" path="res://assets/Bonus_008.png" id="12_5bd50"]
-[ext_resource type="PackedScene" uid="uid://v2mu0eu3170l" path="res://core/context/contextual_menu.tscn" id="13_jypu3"]
-[ext_resource type="PackedScene" uid="uid://d1gpye07u6j6i" path="res://core/main_button/main_button.tscn" id="14_xji3q"]
-[ext_resource type="PackedScene" uid="uid://dqnybiwcyv5be" path="res://core/player_stats_display/player_stats_display.tscn" id="15_fggjv"]
-[ext_resource type="PackedScene" uid="uid://d4elg85kn1fv0" path="res://core/inv/inv_job_grid.tscn" id="16_k2jj4"]
-
-[sub_resource type="Resource" id="Resource_867lq"]
-script = ExtResource("11_05x0e")
-texture = ExtResource("12_5bd50")
-metadata/_custom_type_script = "uid://c111h4hr10qqe"
-
-[sub_resource type="Resource" id="Resource_hring"]
-script = ExtResource("3_k2jj4")
-card = SubResource("Resource_867lq")
-metadata/_custom_type_script = "uid://b68dccp060bvq"
-
-[sub_resource type="Resource" id="Resource_w3w8l"]
-script = ExtResource("3_k2jj4")
-card = ExtResource("4_nj2lw")
-metadata/_custom_type_script = "uid://b68dccp060bvq"
-
-[sub_resource type="Resource" id="Resource_x6v5h"]
-script = ExtResource("3_k2jj4")
-card = ExtResource("5_qpuqg")
-metadata/_custom_type_script = "uid://b68dccp060bvq"
-
-[sub_resource type="Resource" id="Resource_o50m4"]
-script = ExtResource("3_k2jj4")
-card = ExtResource("6_lfrbt")
-metadata/_custom_type_script = "uid://b68dccp060bvq"
-
-[sub_resource type="Resource" id="Resource_pip61"]
-script = ExtResource("3_k2jj4")
-card = ExtResource("7_8th36")
-metadata/_custom_type_script = "uid://b68dccp060bvq"
-
-[sub_resource type="Resource" id="Resource_g6aei"]
-script = ExtResource("3_k2jj4")
-card = ExtResource("8_i2r8w")
-metadata/_custom_type_script = "uid://b68dccp060bvq"
-
-[sub_resource type="Resource" id="Resource_v3ll0"]
-script = ExtResource("3_k2jj4")
-card = ExtResource("9_m3sc2")
-metadata/_custom_type_script = "uid://b68dccp060bvq"
+[ext_resource type="PackedScene" uid="uid://bciupdeplw7ta" path="res://core/scenes/main_scene/inv/inv_grid.tscn" id="2_di1jt"]
+[ext_resource type="PackedScene" uid="uid://dddev7vnlpiwx" path="res://core/scenes/scene_switcher.tscn" id="7_i37im"]
+[ext_resource type="PackedScene" uid="uid://cqxn4gwy08ms6" path="res://core/scenes/job_scene/job_scene.tscn" id="8_d28lo"]
+[ext_resource type="PackedScene" uid="uid://bpu8vhr7lcpc4" path="res://core/scenes/store_scene/store_scene.tscn" id="8_i37im"]
+[ext_resource type="PackedScene" uid="uid://du52qre26cn7v" path="res://core/scenes/fight_scene/fight_scene.tscn" id="9_i37im"]
+[ext_resource type="Script" uid="uid://dwflin6ikckbd" path="res://core/scenes/main_scene/inv/inv_hotbar.gd" id="10_j6djv"]
+[ext_resource type="PackedScene" uid="uid://v2mu0eu3170l" path="res://core/scenes/context/contextual_menu.tscn" id="13_jypu3"]
+[ext_resource type="PackedScene" uid="uid://d1gpye07u6j6i" path="res://core/scenes/main_scene/main_button/main_button.tscn" id="14_xji3q"]
+[ext_resource type="PackedScene" uid="uid://dqnybiwcyv5be" path="res://core/scenes/main_scene/player_stats_display/player_stats_display.tscn" id="15_fggjv"]
 
 [node name="Main" type="Control" unique_id=243576573]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 12.0
-offset_top = -8.0
-offset_right = 12.0
-offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yblnd")
-player_inv = NodePath("PlayerInv")
-hot_bar = NodePath("PlayerHotBar")
-player_stats_display = NodePath("PlayerStatsDisplay")
-contextual_menu = NodePath("ContextualMenu")
+store_path = NodePath("StoreScene")
+job_path = NodePath("JobScene")
+fight_path = NodePath("FightScene")
+player_inv = NodePath("MainScene/PlayerInv")
+hot_bar = NodePath("MainScene/PlayerHotBar")
+player_stats_display = NodePath("MainScene/PlayerStatsDisplay")
+contextual_menu = NodePath("MainScene/ContextualMenu")
 
-[node name="PlayerInv" parent="." unique_id=1997905441 instance=ExtResource("2_di1jt")]
+[node name="MainScene" type="Control" parent="." unique_id=989780285]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="MainScene" unique_id=331060748]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.6215239, 0.6215238, 0.6215241, 1)
+
+[node name="PlayerInv" parent="MainScene" unique_id=1997905441 instance=ExtResource("2_di1jt")]
 layout_mode = 1
 anchors_preset = 5
 anchor_top = 0.0
@@ -85,7 +55,7 @@ offset_right = 0.0
 offset_bottom = 0.0
 grow_vertical = 1
 
-[node name="PlayerHotBar" parent="." unique_id=1966444638 instance=ExtResource("2_di1jt")]
+[node name="PlayerHotBar" parent="MainScene" unique_id=1966444638 instance=ExtResource("2_di1jt")]
 layout_mode = 1
 anchors_preset = 7
 anchor_top = 1.0
@@ -96,13 +66,10 @@ offset_right = 0.0
 offset_bottom = 0.0
 grow_vertical = 0
 script = ExtResource("10_j6djv")
-inv_list = Dictionary[int, ExtResource("3_k2jj4")]({
-0: SubResource("Resource_hring")
-})
 num_slots = 5
 accepted_card_types = Array[int]([0])
 
-[node name="ContextualMenu" parent="." unique_id=743798992 instance=ExtResource("13_jypu3")]
+[node name="ContextualMenu" parent="MainScene" unique_id=743798992 instance=ExtResource("13_jypu3")]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -117,49 +84,26 @@ offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MainButton" parent="." unique_id=1509033284 instance=ExtResource("14_xji3q")]
+[node name="MainButton" parent="MainScene" unique_id=1509033284 instance=ExtResource("14_xji3q")]
 layout_mode = 1
 offset_top = -50.0
 offset_right = 200.0
 offset_bottom = 50.0
 
-[node name="PlayerStatsDisplay" parent="." unique_id=1328263879 instance=ExtResource("15_fggjv")]
+[node name="PlayerStatsDisplay" parent="MainScene" unique_id=1328263879 instance=ExtResource("15_fggjv")]
 layout_mode = 0
 
-[node name="StoreInv" parent="." unique_id=1380027830 instance=ExtResource("2_di1jt")]
+[node name="SceneSwitcher" parent="MainScene" unique_id=60747736 instance=ExtResource("7_i37im")]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 0.0
-grow_horizontal = 0
-grow_vertical = 1
-inv_type = 1
-inv_list = Dictionary[int, ExtResource("3_k2jj4")]({
-0: SubResource("Resource_w3w8l"),
-1: SubResource("Resource_x6v5h"),
-2: SubResource("Resource_o50m4"),
-3: SubResource("Resource_pip61"),
-4: SubResource("Resource_g6aei"),
-5: SubResource("Resource_v3ll0")
-})
 
-[node name="InvJobGrid" parent="." unique_id=677457865 instance=ExtResource("16_k2jj4")]
+[node name="StoreScene" parent="." unique_id=285414939 instance=ExtResource("8_i37im")]
+visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-num_slots = 1
+
+[node name="JobScene" parent="." unique_id=157172509 instance=ExtResource("8_d28lo")]
+visible = false
+layout_mode = 1
+
+[node name="FightScene" parent="." unique_id=1327308366 instance=ExtResource("9_i37im")]
+visible = false
+layout_mode = 1

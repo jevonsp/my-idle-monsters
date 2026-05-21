@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://bpu8vhr7lcpc4"]
+
+[ext_resource type="PackedScene" uid="uid://bciupdeplw7ta" path="res://core/scenes/main_scene/inv/inv_grid.tscn" id="1_1ecf0"]
+[ext_resource type="Script" uid="uid://cynrnys68fytw" path="res://core/scenes/store_scene/store_scene.gd" id="1_c8ncx"]
+[ext_resource type="PackedScene" uid="uid://us63ro8fnlb0" path="res://core/scenes/back_button.tscn" id="2_hxwp2"]
+
+[node name="StoreScene" type="Control" unique_id=285414939]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c8ncx")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1269581285]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.6215239, 0.6215238, 0.6215241, 1)
+
+[node name="BackButton" parent="." unique_id=146139642 instance=ExtResource("2_hxwp2")]
+layout_mode = 0
+
+[node name="StoreInv" parent="." unique_id=1997905441 instance=ExtResource("1_1ecf0")]
+layout_mode = 1
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+inv_type = 1

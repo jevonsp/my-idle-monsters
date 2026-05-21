@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://du52qre26cn7v"]
+
+[ext_resource type="Script" uid="uid://bxaustm2yxtf" path="res://core/scenes/fight_scene/fight_scene.gd" id="1_fal88"]
+[ext_resource type="PackedScene" uid="uid://us63ro8fnlb0" path="res://core/scenes/back_button.tscn" id="2_lpil1"]
+
+[node name="FightScene" type="Control" unique_id=1327308366]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fal88")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1824210847]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.6215239, 0.6215238, 0.6215241, 1)
+
+[node name="BackButton" parent="." unique_id=146139642 instance=ExtResource("2_lpil1")]
+layout_mode = 0

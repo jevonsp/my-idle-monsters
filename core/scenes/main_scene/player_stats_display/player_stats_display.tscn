@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dqnybiwcyv5be"]
 
-[ext_resource type="Script" uid="uid://dy7htvpgn6ehs" path="res://core/player_stats_display/player_stats_display.gd" id="1_w810a"]
+[ext_resource type="Script" uid="uid://dy7htvpgn6ehs" path="res://core/scenes/main_scene/player_stats_display/player_stats_display.gd" id="1_w810a"]
 
 [node name="PlayerStatsDisplay" type="Control" unique_id=1328263879]
 layout_mode = 3

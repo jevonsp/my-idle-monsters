@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bciupdeplw7ta"]
 
-[ext_resource type="Script" uid="uid://bt5e00fetbdx1" path="res://core/inv/inv_grid.gd" id="1_hnslc"]
+[ext_resource type="Script" uid="uid://bt5e00fetbdx1" path="res://core/scenes/main_scene/inv/inv_grid.gd" id="1_hnslc"]
 
 [node name="InvGrid" type="GridContainer" unique_id=1997905441]
 anchors_preset = 8
