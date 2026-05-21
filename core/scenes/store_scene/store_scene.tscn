@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bciupdeplw7ta" path="res://core/scenes/main_scene/inv/inv_grid.tscn" id="1_1ecf0"]
 [ext_resource type="Script" uid="uid://cynrnys68fytw" path="res://core/scenes/store_scene/store_scene.gd" id="1_c8ncx"]
-[ext_resource type="PackedScene" uid="uid://us63ro8fnlb0" path="res://core/scenes/back_button.tscn" id="2_hxwp2"]
+[ext_resource type="PackedScene" uid="uid://us63ro8fnlb0" path="res://core/scenes/store_scene/back_button.tscn" id="2_hxwp2"]
 
 [node name="StoreScene" type="Control" unique_id=285414939]
 layout_mode = 3
@@ -27,8 +27,12 @@ layout_mode = 0
 
 [node name="StoreInv" parent="." unique_id=1997905441 instance=ExtResource("1_1ecf0")]
 layout_mode = 1
-offset_left = 0.0
+anchors_preset = 6
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -300.0
 offset_top = 0.0
-offset_right = 0.0
+offset_right = -300.0
 offset_bottom = 0.0
+grow_horizontal = 0
 inv_type = 1

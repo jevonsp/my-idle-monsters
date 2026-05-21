@@ -1,6 +1,7 @@
 class_name Main
 extends Control
 
+@export var canvas_layer_path: NodePath
 @export_subgroup("Scenes")
 @export var store_path: NodePath
 @export var job_path: NodePath

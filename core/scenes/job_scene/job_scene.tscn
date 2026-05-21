@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cqxn4gwy08ms6"]
 
 [ext_resource type="Script" uid="uid://d2afbgxxa5a0c" path="res://core/scenes/job_scene/job_scene.gd" id="1_0xtjx"]
-[ext_resource type="PackedScene" uid="uid://us63ro8fnlb0" path="res://core/scenes/back_button.tscn" id="2_x1q40"]
+[ext_resource type="PackedScene" uid="uid://us63ro8fnlb0" path="res://core/scenes/store_scene/back_button.tscn" id="2_x1q40"]
 [ext_resource type="PackedScene" uid="uid://d4elg85kn1fv0" path="res://core/scenes/main_scene/inv/inv_job_grid.tscn" id="3_pwgyk"]
 
 [node name="JobScene" type="Control" unique_id=157172509]

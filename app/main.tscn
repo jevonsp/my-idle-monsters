@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cnss05q1hiseg" path="res://app/main.gd" id="1_yblnd"]
 [ext_resource type="PackedScene" uid="uid://bciupdeplw7ta" path="res://core/scenes/main_scene/inv/inv_grid.tscn" id="2_di1jt"]
-[ext_resource type="PackedScene" uid="uid://dddev7vnlpiwx" path="res://core/scenes/scene_switcher.tscn" id="7_i37im"]
+[ext_resource type="Script" uid="uid://dxdyw62jxhj18" path="res://app/canvas_layer.gd" id="2_kqegv"]
+[ext_resource type="PackedScene" uid="uid://dddev7vnlpiwx" path="res://core/scenes/store_scene/scene_switcher.tscn" id="7_i37im"]
 [ext_resource type="PackedScene" uid="uid://cqxn4gwy08ms6" path="res://core/scenes/job_scene/job_scene.tscn" id="8_d28lo"]
 [ext_resource type="PackedScene" uid="uid://bpu8vhr7lcpc4" path="res://core/scenes/store_scene/store_scene.tscn" id="8_i37im"]
 [ext_resource type="PackedScene" uid="uid://du52qre26cn7v" path="res://core/scenes/fight_scene/fight_scene.tscn" id="9_i37im"]
@@ -19,13 +20,51 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yblnd")
+canvas_layer_path = NodePath("CanvasLayer")
 store_path = NodePath("StoreScene")
 job_path = NodePath("JobScene")
 fight_path = NodePath("FightScene")
-player_inv = NodePath("MainScene/PlayerInv")
-hot_bar = NodePath("MainScene/PlayerHotBar")
+player_inv = NodePath("CanvasLayer/PlayerInv")
+hot_bar = NodePath("CanvasLayer/PlayerHotBar")
 player_stats_display = NodePath("MainScene/PlayerStatsDisplay")
 contextual_menu = NodePath("MainScene/ContextualMenu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1622005855]
+script = ExtResource("2_kqegv")
+
+[node name="PlayerInv" parent="CanvasLayer" unique_id=1997905441 instance=ExtResource("2_di1jt")]
+anchors_preset = 5
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_vertical = 1
+
+[node name="PlayerHotBar" parent="CanvasLayer" unique_id=1966444638 instance=ExtResource("2_di1jt")]
+anchors_preset = 7
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_vertical = 0
+script = ExtResource("10_j6djv")
+num_slots = 5
+accepted_card_types = Array[int]([0])
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=1071320132]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -131.0
+offset_top = -187.0
+grow_horizontal = 0
+grow_vertical = 0
 
 [node name="MainScene" type="Control" parent="." unique_id=989780285]
 layout_mode = 1
@@ -43,31 +82,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.6215239, 0.6215238, 0.6215241, 1)
-
-[node name="PlayerInv" parent="MainScene" unique_id=1997905441 instance=ExtResource("2_di1jt")]
-layout_mode = 1
-anchors_preset = 5
-anchor_top = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 0.0
-grow_vertical = 1
-
-[node name="PlayerHotBar" parent="MainScene" unique_id=1966444638 instance=ExtResource("2_di1jt")]
-layout_mode = 1
-anchors_preset = 7
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 0.0
-grow_vertical = 0
-script = ExtResource("10_j6djv")
-num_slots = 5
-accepted_card_types = Array[int]([0])
 
 [node name="ContextualMenu" parent="MainScene" unique_id=743798992 instance=ExtResource("13_jypu3")]
 visible = false

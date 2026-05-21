@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dddev7vnlpiwx"]
 
-[ext_resource type="Script" uid="uid://bj5jtmgmw4pkl" path="res://core/scenes/scene_switcher.gd" id="1_40q1q"]
+[ext_resource type="Script" uid="uid://bj5jtmgmw4pkl" path="res://core/scenes/store_scene/scene_switcher.gd" id="1_40q1q"]
 
 [node name="SceneSwitcher" type="VBoxContainer" unique_id=60747736]
 anchors_preset = 1

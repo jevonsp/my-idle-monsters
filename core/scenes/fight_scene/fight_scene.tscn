@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://du52qre26cn7v"]
 
 [ext_resource type="Script" uid="uid://bxaustm2yxtf" path="res://core/scenes/fight_scene/fight_scene.gd" id="1_fal88"]
-[ext_resource type="PackedScene" uid="uid://us63ro8fnlb0" path="res://core/scenes/back_button.tscn" id="2_lpil1"]
+[ext_resource type="PackedScene" uid="uid://us63ro8fnlb0" path="res://core/scenes/store_scene/back_button.tscn" id="2_lpil1"]
 
 [node name="FightScene" type="Control" unique_id=1327308366]
 layout_mode = 3

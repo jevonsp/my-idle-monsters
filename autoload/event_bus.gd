@@ -6,7 +6,8 @@ signal save_completed(error: Error)
 signal time_ticked(delta: float)
 signal currency_changed(money: BigNumber)
 signal hotbar_changed(cards: Dictionary)
-signal screen_manager_toggle(node: Node, val: bool)
+signal screen_manager_toggle(scene: Scene, val: bool)
+signal request_layout(node: Node, preset: Control.LayoutPreset, margin: int, visible: bool)
 
 
 @warning_ignore_restore("unused_signal")
