@@ -8,6 +8,7 @@ var unit_manager: UnitManager
 var menu_builder: ContextMenuBuilder
 var context_action_runner: ContextActionRunner
 var scene_manager: SceneManager
+var job_manager: JobManager
 var canvas_layer: CanvasLayer = null
 var player_stats_display: PlayerStatsDisplay = null
 var hot_bar: InvHotbar = null
@@ -28,6 +29,7 @@ func _init() -> void:
 	context_action_runner = ContextActionRunner.new()
 	unit_manager.bind_game_session(self)
 	scene_manager = SceneManager.new()
+	job_manager = JobManager.new()
 
 
 func can_buy(card: BaseCard) -> bool:

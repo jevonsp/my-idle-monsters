@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://de3r78b2ewayj"
-path="res://.godot/imported/Monster_Sheet.png-5dc1369cef60b5f91479cd775cd688a3.ctex"
+path="res://.godot/imported/Monster_Sheet.png-3dc5c8b8298d2c321e6b254a03dbc02c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://content/cards/card_monster/Monster_Sheet.png"
-dest_files=["res://.godot/imported/Monster_Sheet.png-5dc1369cef60b5f91479cd775cd688a3.ctex"]
+source_file="res://res/cards/card_monster/Monster_Sheet.png"
+dest_files=["res://.godot/imported/Monster_Sheet.png-3dc5c8b8298d2c321e6b254a03dbc02c.ctex"]
 
 [params]
 

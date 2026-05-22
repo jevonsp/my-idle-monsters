@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://pjbq0neklcw1"]
 
 [ext_resource type="Script" uid="uid://6uwjy6q4rrc0" path="res://core/scenes/main_scene/inv/inv_slot.gd" id="1_h76ro"]
-[ext_resource type="Texture2D" uid="uid://c1njh6uqur0pm" path="res://content/cards/card_monster/monster_atlas_texture.tres" id="2_h76ro"]
+[ext_resource type="Texture2D" uid="uid://c1njh6uqur0pm" path="res://res/cards/card_monster/monster_atlas_texture.tres" id="2_h76ro"]
 
 [node name="InvSlot" type="MarginContainer" unique_id=59401916]
 custom_minimum_size = Vector2(60, 60)
